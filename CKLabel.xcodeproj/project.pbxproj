@@ -1,0 +1,789 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		732516AF222E752200978DC8 /* NSAttributedString+CKTextKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 732516AD222E752200978DC8 /* NSAttributedString+CKTextKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		732516B0222E752200978DC8 /* NSAttributedString+CKTextKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 732516AE222E752200978DC8 /* NSAttributedString+CKTextKit.mm */; };
+		736458552226BAC30016656B /* CKLabel.h in Headers */ = {isa = PBXBuildFile; fileRef = 736458532226BAC30016656B /* CKLabel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		736458C22226C0B40016656B /* CKLabel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 736458C12226C0B40016656B /* CKLabel.mm */; };
+		736458CB2226C1360016656B /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 736458CA2226C1360016656B /* AppDelegate.mm */; };
+		736458CE2226C1360016656B /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 736458CD2226C1360016656B /* ViewController.mm */; };
+		736458D12226C1360016656B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736458CF2226C1360016656B /* Main.storyboard */; };
+		736458D32226C1370016656B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 736458D22226C1370016656B /* Assets.xcassets */; };
+		736458D62226C1370016656B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 736458D42226C1370016656B /* LaunchScreen.storyboard */; };
+		736458D92226C1370016656B /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 736458D82226C1370016656B /* main.mm */; };
+		736458E02226C4770016656B /* CKLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458502226BAC30016656B /* CKLabel.framework */; };
+		736458E22226C4CE0016656B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E12226C4CE0016656B /* UIKit.framework */; };
+		736458E42226C4D40016656B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E32226C4D40016656B /* Foundation.framework */; };
+		736458E62226C4D90016656B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E52226C4D90016656B /* CoreText.framework */; };
+		736458E82226C5470016656B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E72226C5470016656B /* CoreGraphics.framework */; };
+		736458EA2226C5850016656B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E92226C5850016656B /* QuartzCore.framework */; };
+		738DE4AF2231472B008DC65A /* NSDictionary+CKTextKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 738DE4AD2231472B008DC65A /* NSDictionary+CKTextKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		738DE4B02231472B008DC65A /* NSDictionary+CKTextKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 738DE4AE2231472B008DC65A /* NSDictionary+CKTextKit.mm */; };
+		739CB7C52234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7912234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h */; };
+		739CB7C62234FDA6003C7DDB /* CKTextComponentViewControlTracker.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7922234FDA6003C7DDB /* CKTextComponentViewControlTracker.mm */; };
+		739CB7C72234FDA6003C7DDB /* CKTextComponentView.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7932234FDA6003C7DDB /* CKTextComponentView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		739CB7C82234FDA6003C7DDB /* CKTextComponentLayerHighlighter.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7942234FDA6003C7DDB /* CKTextComponentLayerHighlighter.mm */; };
+		739CB7C92234FDA6003C7DDB /* CKTextComponentLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7952234FDA6003C7DDB /* CKTextComponentLayer.h */; };
+		739CB7CA2234FDA6003C7DDB /* CKTextKitRenderer+Positioning.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7972234FDA6003C7DDB /* CKTextKitRenderer+Positioning.h */; };
+		739CB7CB2234FDA6003C7DDB /* CKTextKitContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7982234FDA6003C7DDB /* CKTextKitContext.h */; };
+		739CB7CC2234FDA6003C7DDB /* CKTextKitRenderer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7992234FDA6003C7DDB /* CKTextKitRenderer.mm */; };
+		739CB7CD2234FDA6003C7DDB /* CKTextKitTailTruncater.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB79A2234FDA6003C7DDB /* CKTextKitTailTruncater.h */; };
+		739CB7CE2234FDA6003C7DDB /* CKTextKitTruncating.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB79B2234FDA6003C7DDB /* CKTextKitTruncating.h */; };
+		739CB7CF2234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB79C2234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.h */; };
+		739CB7D02234FDA6003C7DDB /* CKTextKitEntityAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 739CB79D2234FDA6003C7DDB /* CKTextKitEntityAttribute.m */; };
+		739CB7D12234FDA6003C7DDB /* CKTextKitContext.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB79E2234FDA6003C7DDB /* CKTextKitContext.mm */; };
+		739CB7D22234FDA6003C7DDB /* CKTextKitRendererCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB79F2234FDA6003C7DDB /* CKTextKitRendererCache.h */; };
+		739CB7D32234FDA6003C7DDB /* CKTextKitAttributes.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7A02234FDA6003C7DDB /* CKTextKitAttributes.mm */; };
+		739CB7D42234FDA6003C7DDB /* CKTextKitRenderer+Positioning.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7A12234FDA6003C7DDB /* CKTextKitRenderer+Positioning.mm */; };
+		739CB7D52234FDA6003C7DDB /* CKTextKitRendererCache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7A22234FDA6003C7DDB /* CKTextKitRendererCache.mm */; };
+		739CB7D62234FDA6003C7DDB /* CKTextKitTailTruncater.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7A32234FDA6003C7DDB /* CKTextKitTailTruncater.mm */; };
+		739CB7D72234FDA6003C7DDB /* CKTextKitShadower.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7A42234FDA6003C7DDB /* CKTextKitShadower.mm */; };
+		739CB7D82234FDA6003C7DDB /* CKTextKitShadower.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7A52234FDA6003C7DDB /* CKTextKitShadower.h */; };
+		739CB7D92234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7A62234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.mm */; };
+		739CB7DA2234FDA6003C7DDB /* CKTextKitEntityAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7A72234FDA6003C7DDB /* CKTextKitEntityAttribute.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		739CB7DB2234FDA6003C7DDB /* CKTextKitRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7A82234FDA6003C7DDB /* CKTextKitRenderer.h */; };
+		739CB7DC2234FDA6003C7DDB /* CKTextKitAttributes.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7A92234FDA6003C7DDB /* CKTextKitAttributes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		739CB7DD2234FDA6003C7DDB /* CKTextComponentView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7AA2234FDA6003C7DDB /* CKTextComponentView.mm */; };
+		739CB7DE2234FDA6003C7DDB /* CKTextComponentLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7AB2234FDA6003C7DDB /* CKTextComponentLayer.mm */; };
+		739CB7DF2234FDA6003C7DDB /* CKAsyncTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7AD2234FDA6003C7DDB /* CKAsyncTransaction.m */; };
+		739CB7E02234FDA6003C7DDB /* CKAsyncLayerInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7AE2234FDA6003C7DDB /* CKAsyncLayerInternal.h */; };
+		739CB7E12234FDA6003C7DDB /* CKAsyncTransactionGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7AF2234FDA6003C7DDB /* CKAsyncTransactionGroup.h */; };
+		739CB7E22234FDA6003C7DDB /* CKFunctor.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B02234FDA6003C7DDB /* CKFunctor.h */; };
+		739CB7E32234FDA6003C7DDB /* CKAsyncTransactionContainer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B12234FDA6003C7DDB /* CKAsyncTransactionContainer.h */; };
+		739CB7E42234FDA6003C7DDB /* CKAsyncTransaction.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B22234FDA6003C7DDB /* CKAsyncTransaction.h */; };
+		739CB7E52234FDA6003C7DDB /* CKCacheImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B32234FDA6003C7DDB /* CKCacheImpl.h */; };
+		739CB7E62234FDA6003C7DDB /* CKAsyncLayerSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B42234FDA6003C7DDB /* CKAsyncLayerSubclass.h */; };
+		739CB7E72234FDA6003C7DDB /* CKAsyncLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7B52234FDA6003C7DDB /* CKAsyncLayer.mm */; };
+		739CB7E82234FDA6003C7DDB /* CKHighlightOverlayLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B62234FDA6003C7DDB /* CKHighlightOverlayLayer.h */; };
+		739CB7E92234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B72234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h */; };
+		739CB7EA2234FDA6003C7DDB /* CKAsyncTransactionGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7B82234FDA6003C7DDB /* CKAsyncTransactionGroup.m */; };
+		739CB7EB2234FDA6003C7DDB /* CKAsyncLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B92234FDA6003C7DDB /* CKAsyncLayer.h */; };
+		739CB7EC2234FDA6003C7DDB /* CKAsyncTransactionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7BA2234FDA6003C7DDB /* CKAsyncTransactionContainer.m */; };
+		739CB7ED2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7BB2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm */; };
+		739CB7EE2234FDA6003C7DDB /* CKTextComponentViewInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7BC2234FDA6003C7DDB /* CKTextComponentViewInternal.h */; };
+		739CB7EF2234FDA6003C7DDB /* CKTextComponentViewControlTracker.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7BD2234FDA6003C7DDB /* CKTextComponentViewControlTracker.h */; };
+		739CB7F02234FDA6003C7DDB /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 739CB7BE2234FDA6003C7DDB /* LICENSE */; };
+		739CB7F12234FDA6003C7DDB /* CKEqualityHashHelpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7C02234FDA6003C7DDB /* CKEqualityHashHelpers.mm */; };
+		739CB7F22234FDA6003C7DDB /* CKInternalHelpers.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7C12234FDA6003C7DDB /* CKInternalHelpers.mm */; };
+		739CB7F32234FDA6003C7DDB /* CKEqualityHashHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7C22234FDA6003C7DDB /* CKEqualityHashHelpers.h */; };
+		739CB7F42234FDA6003C7DDB /* CKAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7C32234FDA6003C7DDB /* CKAssert.h */; };
+		739CB7F52234FDA6003C7DDB /* CKInternalHelpers.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7C42234FDA6003C7DDB /* CKInternalHelpers.h */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		736458DD2226C1560016656B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 736458472226BAC30016656B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7364584F2226BAC30016656B;
+			remoteInfo = CKLabel;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		732516AD222E752200978DC8 /* NSAttributedString+CKTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CKTextKit.h"; sourceTree = "<group>"; };
+		732516AE222E752200978DC8 /* NSAttributedString+CKTextKit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSAttributedString+CKTextKit.mm"; sourceTree = "<group>"; };
+		736458502226BAC30016656B /* CKLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		736458532226BAC30016656B /* CKLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CKLabel.h; sourceTree = "<group>"; };
+		736458542226BAC30016656B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		736458C12226C0B40016656B /* CKLabel.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKLabel.mm; sourceTree = "<group>"; };
+		736458C72226C1360016656B /* CKLabelTestHost.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CKLabelTestHost.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		736458C92226C1360016656B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		736458CA2226C1360016656B /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		736458CC2226C1360016656B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		736458CD2226C1360016656B /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		736458D02226C1360016656B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		736458D22226C1370016656B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		736458D52226C1370016656B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		736458D72226C1370016656B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		736458D82226C1370016656B /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		736458E12226C4CE0016656B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		736458E32226C4D40016656B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		736458E52226C4D90016656B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		736458E72226C5470016656B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		736458E92226C5850016656B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		738DE4AD2231472B008DC65A /* NSDictionary+CKTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CKTextKit.h"; sourceTree = "<group>"; };
+		738DE4AE2231472B008DC65A /* NSDictionary+CKTextKit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDictionary+CKTextKit.mm"; sourceTree = "<group>"; };
+		739CB7912234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextComponentLayerHighlighter.h; sourceTree = "<group>"; };
+		739CB7922234FDA6003C7DDB /* CKTextComponentViewControlTracker.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextComponentViewControlTracker.mm; sourceTree = "<group>"; };
+		739CB7932234FDA6003C7DDB /* CKTextComponentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextComponentView.h; sourceTree = "<group>"; };
+		739CB7942234FDA6003C7DDB /* CKTextComponentLayerHighlighter.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextComponentLayerHighlighter.mm; sourceTree = "<group>"; };
+		739CB7952234FDA6003C7DDB /* CKTextComponentLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextComponentLayer.h; sourceTree = "<group>"; };
+		739CB7972234FDA6003C7DDB /* CKTextKitRenderer+Positioning.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKTextKitRenderer+Positioning.h"; sourceTree = "<group>"; };
+		739CB7982234FDA6003C7DDB /* CKTextKitContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitContext.h; sourceTree = "<group>"; };
+		739CB7992234FDA6003C7DDB /* CKTextKitRenderer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextKitRenderer.mm; sourceTree = "<group>"; };
+		739CB79A2234FDA6003C7DDB /* CKTextKitTailTruncater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitTailTruncater.h; sourceTree = "<group>"; };
+		739CB79B2234FDA6003C7DDB /* CKTextKitTruncating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitTruncating.h; sourceTree = "<group>"; };
+		739CB79C2234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKTextKitRenderer+TextChecking.h"; sourceTree = "<group>"; };
+		739CB79D2234FDA6003C7DDB /* CKTextKitEntityAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKTextKitEntityAttribute.m; sourceTree = "<group>"; };
+		739CB79E2234FDA6003C7DDB /* CKTextKitContext.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextKitContext.mm; sourceTree = "<group>"; };
+		739CB79F2234FDA6003C7DDB /* CKTextKitRendererCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitRendererCache.h; sourceTree = "<group>"; };
+		739CB7A02234FDA6003C7DDB /* CKTextKitAttributes.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextKitAttributes.mm; sourceTree = "<group>"; };
+		739CB7A12234FDA6003C7DDB /* CKTextKitRenderer+Positioning.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "CKTextKitRenderer+Positioning.mm"; sourceTree = "<group>"; };
+		739CB7A22234FDA6003C7DDB /* CKTextKitRendererCache.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextKitRendererCache.mm; sourceTree = "<group>"; };
+		739CB7A32234FDA6003C7DDB /* CKTextKitTailTruncater.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextKitTailTruncater.mm; sourceTree = "<group>"; };
+		739CB7A42234FDA6003C7DDB /* CKTextKitShadower.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextKitShadower.mm; sourceTree = "<group>"; };
+		739CB7A52234FDA6003C7DDB /* CKTextKitShadower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitShadower.h; sourceTree = "<group>"; };
+		739CB7A62234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "CKTextKitRenderer+TextChecking.mm"; sourceTree = "<group>"; };
+		739CB7A72234FDA6003C7DDB /* CKTextKitEntityAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitEntityAttribute.h; sourceTree = "<group>"; };
+		739CB7A82234FDA6003C7DDB /* CKTextKitRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitRenderer.h; sourceTree = "<group>"; };
+		739CB7A92234FDA6003C7DDB /* CKTextKitAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextKitAttributes.h; sourceTree = "<group>"; };
+		739CB7AA2234FDA6003C7DDB /* CKTextComponentView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextComponentView.mm; sourceTree = "<group>"; };
+		739CB7AB2234FDA6003C7DDB /* CKTextComponentLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKTextComponentLayer.mm; sourceTree = "<group>"; };
+		739CB7AD2234FDA6003C7DDB /* CKAsyncTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAsyncTransaction.m; sourceTree = "<group>"; };
+		739CB7AE2234FDA6003C7DDB /* CKAsyncLayerInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAsyncLayerInternal.h; sourceTree = "<group>"; };
+		739CB7AF2234FDA6003C7DDB /* CKAsyncTransactionGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAsyncTransactionGroup.h; sourceTree = "<group>"; };
+		739CB7B02234FDA6003C7DDB /* CKFunctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKFunctor.h; sourceTree = "<group>"; };
+		739CB7B12234FDA6003C7DDB /* CKAsyncTransactionContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAsyncTransactionContainer.h; sourceTree = "<group>"; };
+		739CB7B22234FDA6003C7DDB /* CKAsyncTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAsyncTransaction.h; sourceTree = "<group>"; };
+		739CB7B32234FDA6003C7DDB /* CKCacheImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKCacheImpl.h; sourceTree = "<group>"; };
+		739CB7B42234FDA6003C7DDB /* CKAsyncLayerSubclass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAsyncLayerSubclass.h; sourceTree = "<group>"; };
+		739CB7B52234FDA6003C7DDB /* CKAsyncLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKAsyncLayer.mm; sourceTree = "<group>"; };
+		739CB7B62234FDA6003C7DDB /* CKHighlightOverlayLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKHighlightOverlayLayer.h; sourceTree = "<group>"; };
+		739CB7B72234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CKAsyncTransactionContainer+Private.h"; sourceTree = "<group>"; };
+		739CB7B82234FDA6003C7DDB /* CKAsyncTransactionGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAsyncTransactionGroup.m; sourceTree = "<group>"; };
+		739CB7B92234FDA6003C7DDB /* CKAsyncLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAsyncLayer.h; sourceTree = "<group>"; };
+		739CB7BA2234FDA6003C7DDB /* CKAsyncTransactionContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKAsyncTransactionContainer.m; sourceTree = "<group>"; };
+		739CB7BB2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKHighlightOverlayLayer.mm; sourceTree = "<group>"; };
+		739CB7BC2234FDA6003C7DDB /* CKTextComponentViewInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextComponentViewInternal.h; sourceTree = "<group>"; };
+		739CB7BD2234FDA6003C7DDB /* CKTextComponentViewControlTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextComponentViewControlTracker.h; sourceTree = "<group>"; };
+		739CB7BE2234FDA6003C7DDB /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		739CB7C02234FDA6003C7DDB /* CKEqualityHashHelpers.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKEqualityHashHelpers.mm; sourceTree = "<group>"; };
+		739CB7C12234FDA6003C7DDB /* CKInternalHelpers.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CKInternalHelpers.mm; sourceTree = "<group>"; };
+		739CB7C22234FDA6003C7DDB /* CKEqualityHashHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKEqualityHashHelpers.h; sourceTree = "<group>"; };
+		739CB7C32234FDA6003C7DDB /* CKAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAssert.h; sourceTree = "<group>"; };
+		739CB7C42234FDA6003C7DDB /* CKInternalHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKInternalHelpers.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7364584D2226BAC30016656B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		736458C42226C1360016656B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				736458EA2226C5850016656B /* QuartzCore.framework in Frameworks */,
+				736458E82226C5470016656B /* CoreGraphics.framework in Frameworks */,
+				736458E62226C4D90016656B /* CoreText.framework in Frameworks */,
+				736458E42226C4D40016656B /* Foundation.framework in Frameworks */,
+				736458E22226C4CE0016656B /* UIKit.framework in Frameworks */,
+				736458E02226C4770016656B /* CKLabel.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		736458462226BAC30016656B = {
+			isa = PBXGroup;
+			children = (
+				736458522226BAC30016656B /* CKLabel */,
+				736458C82226C1360016656B /* CKLabelTestHost */,
+				736458512226BAC30016656B /* Products */,
+				736458DF2226C4770016656B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		736458512226BAC30016656B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				736458502226BAC30016656B /* CKLabel.framework */,
+				736458C72226C1360016656B /* CKLabelTestHost.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		736458522226BAC30016656B /* CKLabel */ = {
+			isa = PBXGroup;
+			children = (
+				739CB78F2234FDA6003C7DDB /* componentkit */,
+				736458532226BAC30016656B /* CKLabel.h */,
+				736458C12226C0B40016656B /* CKLabel.mm */,
+				732516AD222E752200978DC8 /* NSAttributedString+CKTextKit.h */,
+				732516AE222E752200978DC8 /* NSAttributedString+CKTextKit.mm */,
+				738DE4AD2231472B008DC65A /* NSDictionary+CKTextKit.h */,
+				738DE4AE2231472B008DC65A /* NSDictionary+CKTextKit.mm */,
+				736458542226BAC30016656B /* Info.plist */,
+			);
+			path = CKLabel;
+			sourceTree = "<group>";
+		};
+		736458C82226C1360016656B /* CKLabelTestHost */ = {
+			isa = PBXGroup;
+			children = (
+				736458C92226C1360016656B /* AppDelegate.h */,
+				736458CA2226C1360016656B /* AppDelegate.mm */,
+				736458CC2226C1360016656B /* ViewController.h */,
+				736458CD2226C1360016656B /* ViewController.mm */,
+				736458CF2226C1360016656B /* Main.storyboard */,
+				736458D22226C1370016656B /* Assets.xcassets */,
+				736458D42226C1370016656B /* LaunchScreen.storyboard */,
+				736458D72226C1370016656B /* Info.plist */,
+				736458D82226C1370016656B /* main.mm */,
+			);
+			path = CKLabelTestHost;
+			sourceTree = "<group>";
+		};
+		736458DF2226C4770016656B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				736458E92226C5850016656B /* QuartzCore.framework */,
+				736458E72226C5470016656B /* CoreGraphics.framework */,
+				736458E52226C4D90016656B /* CoreText.framework */,
+				736458E32226C4D40016656B /* Foundation.framework */,
+				736458E12226C4CE0016656B /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		739CB78F2234FDA6003C7DDB /* componentkit */ = {
+			isa = PBXGroup;
+			children = (
+				739CB7902234FDA6003C7DDB /* ComponentTextKit */,
+				739CB7BF2234FDA6003C7DDB /* Utilities */,
+				739CB7BE2234FDA6003C7DDB /* LICENSE */,
+			);
+			path = componentkit;
+			sourceTree = "<group>";
+		};
+		739CB7902234FDA6003C7DDB /* ComponentTextKit */ = {
+			isa = PBXGroup;
+			children = (
+				739CB7962234FDA6003C7DDB /* TextKit */,
+				739CB7AC2234FDA6003C7DDB /* Utility */,
+				739CB7952234FDA6003C7DDB /* CKTextComponentLayer.h */,
+				739CB7AB2234FDA6003C7DDB /* CKTextComponentLayer.mm */,
+				739CB7912234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h */,
+				739CB7942234FDA6003C7DDB /* CKTextComponentLayerHighlighter.mm */,
+				739CB7932234FDA6003C7DDB /* CKTextComponentView.h */,
+				739CB7AA2234FDA6003C7DDB /* CKTextComponentView.mm */,
+				739CB7BD2234FDA6003C7DDB /* CKTextComponentViewControlTracker.h */,
+				739CB7922234FDA6003C7DDB /* CKTextComponentViewControlTracker.mm */,
+				739CB7BC2234FDA6003C7DDB /* CKTextComponentViewInternal.h */,
+			);
+			path = ComponentTextKit;
+			sourceTree = "<group>";
+		};
+		739CB7962234FDA6003C7DDB /* TextKit */ = {
+			isa = PBXGroup;
+			children = (
+				739CB7A92234FDA6003C7DDB /* CKTextKitAttributes.h */,
+				739CB7A02234FDA6003C7DDB /* CKTextKitAttributes.mm */,
+				739CB7982234FDA6003C7DDB /* CKTextKitContext.h */,
+				739CB79E2234FDA6003C7DDB /* CKTextKitContext.mm */,
+				739CB7A72234FDA6003C7DDB /* CKTextKitEntityAttribute.h */,
+				739CB79D2234FDA6003C7DDB /* CKTextKitEntityAttribute.m */,
+				739CB7A82234FDA6003C7DDB /* CKTextKitRenderer.h */,
+				739CB7992234FDA6003C7DDB /* CKTextKitRenderer.mm */,
+				739CB7972234FDA6003C7DDB /* CKTextKitRenderer+Positioning.h */,
+				739CB7A12234FDA6003C7DDB /* CKTextKitRenderer+Positioning.mm */,
+				739CB79C2234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.h */,
+				739CB7A62234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.mm */,
+				739CB79F2234FDA6003C7DDB /* CKTextKitRendererCache.h */,
+				739CB7A22234FDA6003C7DDB /* CKTextKitRendererCache.mm */,
+				739CB7A52234FDA6003C7DDB /* CKTextKitShadower.h */,
+				739CB7A42234FDA6003C7DDB /* CKTextKitShadower.mm */,
+				739CB79A2234FDA6003C7DDB /* CKTextKitTailTruncater.h */,
+				739CB7A32234FDA6003C7DDB /* CKTextKitTailTruncater.mm */,
+				739CB79B2234FDA6003C7DDB /* CKTextKitTruncating.h */,
+			);
+			path = TextKit;
+			sourceTree = "<group>";
+		};
+		739CB7AC2234FDA6003C7DDB /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				739CB7B92234FDA6003C7DDB /* CKAsyncLayer.h */,
+				739CB7B52234FDA6003C7DDB /* CKAsyncLayer.mm */,
+				739CB7AE2234FDA6003C7DDB /* CKAsyncLayerInternal.h */,
+				739CB7B42234FDA6003C7DDB /* CKAsyncLayerSubclass.h */,
+				739CB7B22234FDA6003C7DDB /* CKAsyncTransaction.h */,
+				739CB7AD2234FDA6003C7DDB /* CKAsyncTransaction.m */,
+				739CB7B12234FDA6003C7DDB /* CKAsyncTransactionContainer.h */,
+				739CB7BA2234FDA6003C7DDB /* CKAsyncTransactionContainer.m */,
+				739CB7B72234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h */,
+				739CB7AF2234FDA6003C7DDB /* CKAsyncTransactionGroup.h */,
+				739CB7B82234FDA6003C7DDB /* CKAsyncTransactionGroup.m */,
+				739CB7B32234FDA6003C7DDB /* CKCacheImpl.h */,
+				739CB7B02234FDA6003C7DDB /* CKFunctor.h */,
+				739CB7B62234FDA6003C7DDB /* CKHighlightOverlayLayer.h */,
+				739CB7BB2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		739CB7BF2234FDA6003C7DDB /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				739CB7C32234FDA6003C7DDB /* CKAssert.h */,
+				739CB7C22234FDA6003C7DDB /* CKEqualityHashHelpers.h */,
+				739CB7C02234FDA6003C7DDB /* CKEqualityHashHelpers.mm */,
+				739CB7C42234FDA6003C7DDB /* CKInternalHelpers.h */,
+				739CB7C12234FDA6003C7DDB /* CKInternalHelpers.mm */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		7364584B2226BAC30016656B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				736458552226BAC30016656B /* CKLabel.h in Headers */,
+				739CB7C72234FDA6003C7DDB /* CKTextComponentView.h in Headers */,
+				739CB7DC2234FDA6003C7DDB /* CKTextKitAttributes.h in Headers */,
+				739CB7F42234FDA6003C7DDB /* CKAssert.h in Headers */,
+				739CB7DA2234FDA6003C7DDB /* CKTextKitEntityAttribute.h in Headers */,
+				739CB7F52234FDA6003C7DDB /* CKInternalHelpers.h in Headers */,
+				739CB7E32234FDA6003C7DDB /* CKAsyncTransactionContainer.h in Headers */,
+				739CB7D22234FDA6003C7DDB /* CKTextKitRendererCache.h in Headers */,
+				739CB7E92234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h in Headers */,
+				739CB7CB2234FDA6003C7DDB /* CKTextKitContext.h in Headers */,
+				739CB7E22234FDA6003C7DDB /* CKFunctor.h in Headers */,
+				739CB7E62234FDA6003C7DDB /* CKAsyncLayerSubclass.h in Headers */,
+				739CB7E42234FDA6003C7DDB /* CKAsyncTransaction.h in Headers */,
+				739CB7DB2234FDA6003C7DDB /* CKTextKitRenderer.h in Headers */,
+				739CB7CF2234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.h in Headers */,
+				739CB7EB2234FDA6003C7DDB /* CKAsyncLayer.h in Headers */,
+				739CB7F32234FDA6003C7DDB /* CKEqualityHashHelpers.h in Headers */,
+				739CB7CA2234FDA6003C7DDB /* CKTextKitRenderer+Positioning.h in Headers */,
+				739CB7CE2234FDA6003C7DDB /* CKTextKitTruncating.h in Headers */,
+				739CB7E82234FDA6003C7DDB /* CKHighlightOverlayLayer.h in Headers */,
+				732516AF222E752200978DC8 /* NSAttributedString+CKTextKit.h in Headers */,
+				738DE4AF2231472B008DC65A /* NSDictionary+CKTextKit.h in Headers */,
+				739CB7C52234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h in Headers */,
+				739CB7CD2234FDA6003C7DDB /* CKTextKitTailTruncater.h in Headers */,
+				739CB7C92234FDA6003C7DDB /* CKTextComponentLayer.h in Headers */,
+				739CB7EE2234FDA6003C7DDB /* CKTextComponentViewInternal.h in Headers */,
+				739CB7D82234FDA6003C7DDB /* CKTextKitShadower.h in Headers */,
+				739CB7E52234FDA6003C7DDB /* CKCacheImpl.h in Headers */,
+				739CB7E12234FDA6003C7DDB /* CKAsyncTransactionGroup.h in Headers */,
+				739CB7E02234FDA6003C7DDB /* CKAsyncLayerInternal.h in Headers */,
+				739CB7EF2234FDA6003C7DDB /* CKTextComponentViewControlTracker.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		7364584F2226BAC30016656B /* CKLabel */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 736458582226BAC30016656B /* Build configuration list for PBXNativeTarget "CKLabel" */;
+			buildPhases = (
+				7364584B2226BAC30016656B /* Headers */,
+				7364584C2226BAC30016656B /* Sources */,
+				7364584D2226BAC30016656B /* Frameworks */,
+				7364584E2226BAC30016656B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CKLabel;
+			productName = CKLabel;
+			productReference = 736458502226BAC30016656B /* CKLabel.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		736458C62226C1360016656B /* CKLabelTestHost */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 736458DA2226C1370016656B /* Build configuration list for PBXNativeTarget "CKLabelTestHost" */;
+			buildPhases = (
+				736458C32226C1360016656B /* Sources */,
+				736458C42226C1360016656B /* Frameworks */,
+				736458C52226C1360016656B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				736458DE2226C1560016656B /* PBXTargetDependency */,
+			);
+			name = CKLabelTestHost;
+			productName = CKLabelTestHost;
+			productReference = 736458C72226C1360016656B /* CKLabelTestHost.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		736458472226BAC30016656B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = vvveiii;
+				TargetAttributes = {
+					7364584F2226BAC30016656B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					736458C62226C1360016656B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 7364584A2226BAC30016656B /* Build configuration list for PBXProject "CKLabel" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 736458462226BAC30016656B;
+			productRefGroup = 736458512226BAC30016656B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7364584F2226BAC30016656B /* CKLabel */,
+				736458C62226C1360016656B /* CKLabelTestHost */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7364584E2226BAC30016656B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				739CB7F02234FDA6003C7DDB /* LICENSE in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		736458C52226C1360016656B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				736458D62226C1370016656B /* LaunchScreen.storyboard in Resources */,
+				736458D32226C1370016656B /* Assets.xcassets in Resources */,
+				736458D12226C1360016656B /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7364584C2226BAC30016656B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				739CB7D32234FDA6003C7DDB /* CKTextKitAttributes.mm in Sources */,
+				739CB7D92234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.mm in Sources */,
+				739CB7DF2234FDA6003C7DDB /* CKAsyncTransaction.m in Sources */,
+				739CB7DE2234FDA6003C7DDB /* CKTextComponentLayer.mm in Sources */,
+				732516B0222E752200978DC8 /* NSAttributedString+CKTextKit.mm in Sources */,
+				739CB7EC2234FDA6003C7DDB /* CKAsyncTransactionContainer.m in Sources */,
+				739CB7D52234FDA6003C7DDB /* CKTextKitRendererCache.mm in Sources */,
+				739CB7D02234FDA6003C7DDB /* CKTextKitEntityAttribute.m in Sources */,
+				736458C22226C0B40016656B /* CKLabel.mm in Sources */,
+				739CB7DD2234FDA6003C7DDB /* CKTextComponentView.mm in Sources */,
+				739CB7F22234FDA6003C7DDB /* CKInternalHelpers.mm in Sources */,
+				739CB7D42234FDA6003C7DDB /* CKTextKitRenderer+Positioning.mm in Sources */,
+				739CB7F12234FDA6003C7DDB /* CKEqualityHashHelpers.mm in Sources */,
+				739CB7EA2234FDA6003C7DDB /* CKAsyncTransactionGroup.m in Sources */,
+				739CB7D62234FDA6003C7DDB /* CKTextKitTailTruncater.mm in Sources */,
+				739CB7D12234FDA6003C7DDB /* CKTextKitContext.mm in Sources */,
+				739CB7E72234FDA6003C7DDB /* CKAsyncLayer.mm in Sources */,
+				739CB7ED2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm in Sources */,
+				739CB7CC2234FDA6003C7DDB /* CKTextKitRenderer.mm in Sources */,
+				739CB7C62234FDA6003C7DDB /* CKTextComponentViewControlTracker.mm in Sources */,
+				738DE4B02231472B008DC65A /* NSDictionary+CKTextKit.mm in Sources */,
+				739CB7D72234FDA6003C7DDB /* CKTextKitShadower.mm in Sources */,
+				739CB7C82234FDA6003C7DDB /* CKTextComponentLayerHighlighter.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		736458C32226C1360016656B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				736458CE2226C1360016656B /* ViewController.mm in Sources */,
+				736458D92226C1370016656B /* main.mm in Sources */,
+				736458CB2226C1360016656B /* AppDelegate.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		736458DE2226C1560016656B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7364584F2226BAC30016656B /* CKLabel */;
+			targetProxy = 736458DD2226C1560016656B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		736458CF2226C1360016656B /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				736458D02226C1360016656B /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		736458D42226C1370016656B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				736458D52226C1370016656B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		736458562226BAC30016656B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPILER_INDEX_STORE_ENABLE = NO;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		736458572226BAC30016656B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COMPILER_INDEX_STORE_ENABLE = NO;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		736458592226BAC30016656B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CKLabel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vvveiii.CKLabel;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7364585A2226BAC30016656B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = CKLabel/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vvveiii.CKLabel;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		736458DB2226C1370016656B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CKLabelTestHost/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Objc",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vvveiii.CKLabelTestHost;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		736458DC2226C1370016656B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = CKLabelTestHost/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-Objc",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.vvveiii.CKLabelTestHost;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7364584A2226BAC30016656B /* Build configuration list for PBXProject "CKLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				736458562226BAC30016656B /* Debug */,
+				736458572226BAC30016656B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		736458582226BAC30016656B /* Build configuration list for PBXNativeTarget "CKLabel" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				736458592226BAC30016656B /* Debug */,
+				7364585A2226BAC30016656B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		736458DA2226C1370016656B /* Build configuration list for PBXNativeTarget "CKLabelTestHost" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				736458DB2226C1370016656B /* Debug */,
+				736458DC2226C1370016656B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 736458472226BAC30016656B /* Project object */;
+}

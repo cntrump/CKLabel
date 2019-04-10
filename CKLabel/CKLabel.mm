@@ -63,7 +63,9 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    
+
+    _commonAttrs->lineBreakMode = _lineBreakMode;
+    _commonAttrs->maximumNumberOfLines = _numberOfLines;
     _commonAttrs->attributedString = self.attributedText;
     _commonAttrs->truncationAttributedString = self.truncationAttributedText;
     CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
@@ -72,7 +74,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
-    return [self.attributedText ck_boundingSizeWithSize:size lineBreakMode:NSLineBreakByWordWrapping maximumNumberOfLines:0];
+    return [self.attributedText ck_boundingSizeWithSize:size lineBreakMode:_lineBreakMode maximumNumberOfLines:_numberOfLines];
 }
 
 - (CGSize)intrinsicContentSize {
@@ -221,6 +223,22 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (void)setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore {
     _paragraphSpacingBefore = paragraphSpacingBefore;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
+    _lineBreakMode = lineBreakMode;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (void)setNumberOfLines:(NSUInteger)numberOfLines {
+    _numberOfLines = numberOfLines;
 
     if (_text || _truncationText) {
         [self updateContent];

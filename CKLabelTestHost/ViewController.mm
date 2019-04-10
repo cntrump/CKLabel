@@ -36,6 +36,8 @@
     CKLabel *ckAsyncLabel = [[CKLabel alloc] init];
     ckAsyncLabel.font = [UIFont systemFontOfSize:15];
     ckAsyncLabel.textColor = UIColor.orangeColor;
+    ckAsyncLabel.numberOfLines = 3;
+    ckAsyncLabel.lineBreakMode = NSLineBreakByTruncatingTail;
     ckAsyncLabel.text = @"Shall I compare thee to a summer's day?\n"
                         @"Thou art more lovely and more temperate:\n"
                         @"Rough winds do shake the darling buds of May,\n"

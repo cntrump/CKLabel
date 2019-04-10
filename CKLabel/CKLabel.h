@@ -34,6 +34,9 @@
 
 @property(nonatomic, strong) UIColor *highlightColor;
 
+@property(nonatomic, assign) NSUInteger numberOfLines;
+@property(nonatomic, assign) NSLineBreakMode lineBreakMode;
+
 // Support for constraint-based layout (auto layout)
 // If nonzero, this is used when determining -intrinsicContentSize for multiline labels
 @property(nonatomic, assign) CGFloat preferredMaxLayoutWidth;

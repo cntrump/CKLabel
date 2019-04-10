@@ -23,6 +23,12 @@
 @property(nonatomic, copy) NSString *truncationText;
 @property(nonatomic, strong) UIColor *truncationTextColor;
 
+@property(nonatomic, assign) NSTextAlignment textAlignment;
+@property(nonatomic, assign) CGFloat lineSpacing;
+@property(nonatomic, assign) CGFloat paragraphSpacing;
+@property(nonatomic, assign) CGFloat lineHeightMultiple;
+@property(nonatomic, assign) CGFloat paragraphSpacingBefore;
+
 @property(nonatomic, copy) NSAttributedString *attributedText;
 @property(nonatomic, copy) NSAttributedString *truncationAttributedText;
 

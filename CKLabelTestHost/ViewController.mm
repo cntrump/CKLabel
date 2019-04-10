@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import <CKLabel/CKLabel.h>
+@import CKLabel;
 
 @interface ViewController ()
 

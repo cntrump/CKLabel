@@ -47,6 +47,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     if (self = [super initWithFrame:frame]) {
         _font = [UIFont systemFontOfSize:17];
         _textColor = UIColor.blackColor;
+        _textAlignment = NSTextAlignmentNatural;
         _commonAttrs = new CKTextKitCommonAttributes;
         self.highlightColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.25];
         self.textLayer.displayMode = CKAsyncLayerDisplayModeAlwaysAsync;
@@ -65,7 +66,9 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     
     _commonAttrs->attributedString = self.attributedText;
     _commonAttrs->truncationAttributedString = self.truncationAttributedText;
-    self.renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
+    CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
+
+    self.renderer = renderer;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -109,7 +112,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     if (_text) {
         _innerAttributedText = [[NSAttributedString alloc] initWithString:_text attributes:@{
                                                                                         NSFontAttributeName: _font,
-                                                                                        NSForegroundColorAttributeName: _textColor
+                                                                                        NSForegroundColorAttributeName: _textColor,
+                                                                                        NSParagraphStyleAttributeName: self.paragraphStyle
                                                                                         }];
     }
     
@@ -153,7 +157,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     if (_truncationText) {
         _innerTruncationAttributedText = [[NSAttributedString alloc] initWithString:_truncationText attributes:@{
                                                                                              NSFontAttributeName: _font,
-                                                                                             NSForegroundColorAttributeName: _truncationTextColor
+                                                                                             NSForegroundColorAttributeName: _truncationTextColor,
+                                                                                             NSParagraphStyleAttributeName: self.paragraphStyle
                                                                                              }];
     }
     
@@ -180,6 +185,57 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     if (_truncationText) {
         [self updateContent];
     }
+}
+
+- (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    _textAlignment = textAlignment;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (void)setLineSpacing:(CGFloat)lineSpacing {
+    _lineSpacing = lineSpacing;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (void)setParagraphSpacing:(CGFloat)paragraphSpacing {
+    _paragraphSpacing = paragraphSpacing;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (void)setLineHeightMultiple:(CGFloat)lineHeightMultiple {
+    _lineHeightMultiple = lineHeightMultiple;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (void)setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore {
+    _paragraphSpacingBefore = paragraphSpacingBefore;
+
+    if (_text || _truncationText) {
+        [self updateContent];
+    }
+}
+
+- (NSParagraphStyle *)paragraphStyle {
+    NSMutableParagraphStyle *style = NSParagraphStyle.defaultParagraphStyle.mutableCopy;
+    style.alignment = _textAlignment;
+    style.lineSpacing = _lineSpacing;
+    style.paragraphSpacing = _paragraphSpacing;
+    style.lineHeightMultiple = _lineHeightMultiple;
+    style.paragraphSpacingBefore = _paragraphSpacingBefore;
+
+    return style;
 }
 
 - (void)updateContent {

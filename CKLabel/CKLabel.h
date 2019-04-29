@@ -16,12 +16,12 @@
 
 @interface CKLabel : CKTextComponentView
 
-@property(nonatomic, copy) NSString *text;
-@property(nonatomic, strong) UIFont *font;
-@property(nonatomic, strong) UIColor *textColor;
+@property(nullable, nonatomic, copy) NSString *text;
+@property(nullable, nonatomic, strong) UIFont *font;
+@property(nullable, nonatomic, strong) UIColor *textColor;
 
-@property(nonatomic, copy) NSString *truncationText;
-@property(nonatomic, strong) UIColor *truncationTextColor;
+@property(nullable, nonatomic, copy) NSString *truncationText;
+@property(nullable, nonatomic, strong) UIColor *truncationTextColor;
 
 @property(nonatomic, assign) NSTextAlignment textAlignment;
 @property(nonatomic, assign) CGFloat lineSpacing;
@@ -29,10 +29,10 @@
 @property(nonatomic, assign) CGFloat lineHeightMultiple;
 @property(nonatomic, assign) CGFloat paragraphSpacingBefore;
 
-@property(nonatomic, copy) NSAttributedString *attributedText;
-@property(nonatomic, copy) NSAttributedString *truncationAttributedText;
+@property(nullable, nonatomic, copy) NSAttributedString *attributedText;
+@property(nullable, nonatomic, copy) NSAttributedString *truncationAttributedText;
 
-@property(nonatomic, strong) UIColor *highlightColor;
+@property(nullable, nonatomic, strong) UIColor *highlightColor;
 
 @property(nonatomic, assign) NSUInteger numberOfLines;
 @property(nonatomic, assign) NSLineBreakMode lineBreakMode;
@@ -41,6 +41,8 @@
 // If nonzero, this is used when determining -intrinsicContentSize for multiline labels
 @property(nonatomic, assign) CGFloat preferredMaxLayoutWidth;
 
-@property(nonatomic, copy) void (^didTapText)(NSRange range, NSDictionary *attrs);
+@property(nullable, nonatomic, copy) void (^didTapText)(NSRange range, NSDictionary * _Nonnull attrs);
+
+- (void)renderInContext:(nullable CGContextRef)context;
 
 @end

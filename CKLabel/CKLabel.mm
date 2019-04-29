@@ -279,4 +279,14 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     }
 }
 
+- (void)renderInContext:(nullable CGContextRef)context {
+    if (!context) {
+        return;
+    }
+
+    UIGraphicsPushContext(context);
+    [self.renderer drawInContext:context bounds:self.bounds];
+    UIGraphicsPopContext();
+}
+
 @end

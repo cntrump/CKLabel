@@ -13,3 +13,9 @@
 - (id<NSObject>)ck_entityAttribute;
 
 @end
+
+@interface NSMutableDictionary (CKTextKit)
+
+- (void)ck_addEntity:(id<NSObject>)entity;
+
+@end

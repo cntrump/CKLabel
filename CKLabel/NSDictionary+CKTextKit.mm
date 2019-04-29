@@ -17,3 +17,15 @@
 }
 
 @end
+
+@implementation NSMutableDictionary (CKTextKit)
+
+- (void)ck_addEntity:(id<NSObject>)entity {
+    if (entity) {
+        self[CKTextKitEntityAttributeName] = [[CKTextKitEntityAttribute alloc] initWithEntity:entity];
+    } else {
+        [self removeObjectForKey:CKTextKitEntityAttributeName];
+    }
+}
+
+@end

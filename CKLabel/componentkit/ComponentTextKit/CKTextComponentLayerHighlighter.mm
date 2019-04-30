@@ -31,6 +31,7 @@
   if (self = [super init]) {
     _textComponentLayer = textComponentLayer;
     _highlightColor = [UIColor colorWithWhite:0 alpha:0.25];
+    _measureOption = CKTextKitRendererMeasureOptionBlock;
   }
   return self;
 }
@@ -51,7 +52,7 @@
         [CATransaction commit];
       }
     } else {
-      NSArray *rects = [_textComponentLayer.renderer rectsForTextRange:_highlightedRange measureOption:CKTextKitRendererMeasureOptionBlock];
+      NSArray *rects = [_textComponentLayer.renderer rectsForTextRange:_highlightedRange measureOption:_measureOption];
       [CATransaction begin];
       [CATransaction setDisableActions:YES];
       if (_highlightOverlayLayer) {

@@ -10,6 +10,11 @@
 #import <CommonCrypto/CommonRandom.h>
 @import CKLabel;
 
+#define RGB(rgb) [UIColor colorWithRed:(((rgb) & 0xff0000) >> 16) / 255.0 \
+                                   green:(((rgb) & 0xff00) >> 8) / 255.0 \
+                                    blue:((rgb) & 0xff) / 255.0 \
+                                   alpha:1]
+
 @interface NSString (Random)
 
 @end
@@ -55,9 +60,11 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _textLabel = [[CKLabel alloc] initWithFrame:CGRectZero];
-        _textLabel.font = [UIFont systemFontOfSize:15];
-        _textLabel.textColor = UIColor.grayColor;
         _textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        _textLabel.didTapText = ^(NSRange range, NSDictionary * _Nonnull attrs) {
+            NSString *link = (NSString *)attrs.ck_entityAttribute;
+            NSLog(@"<did tap; range: %ld-%ld; '%@'>", range.location, range.length, link);
+        };
         [self.contentView addSubview:_textLabel];
         _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addConstraints:@[
@@ -72,7 +79,25 @@
 }
 
 - (void)updateContent {
-    _textLabel.text = [NSString randomStringWithLength:1024];
+    NSString *text = [NSString randomStringWithLength:1024];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text
+                                                                                   attributes:@{
+                                                                                                NSFontAttributeName: [UIFont systemFontOfSize:15],
+                                                                                                NSForegroundColorAttributeName: RGB(0x515151)
+                                                                                                }];
+    [attrString addAttributes:@{
+                                CKTextKitEntityAttributeName: [[CKTextKitEntityAttribute alloc] initWithEntity:@"link"],
+                                NSForegroundColorAttributeName: RGB(0x576b95),
+                                NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
+                                }
+                       range:NSMakeRange(30, 50)];
+    [attrString addAttributes:@{
+                                CKTextKitEntityAttributeName: [[CKTextKitEntityAttribute alloc] initWithEntity:@"link"],
+                                NSForegroundColorAttributeName: RGB(0x576b95),
+                                NSUnderlineStyleAttributeName: @(NSUnderlineStyleDouble)
+                                }
+                        range:NSMakeRange(180, 50)];
+    _textLabel.attributedText = attrString;
 }
 
 @end

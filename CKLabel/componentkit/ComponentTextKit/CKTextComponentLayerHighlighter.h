@@ -10,6 +10,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIColor.h>
+#import "CKTextKitRenderer+Positioning.h"
 
 const NSRange CKTextComponentLayerInvalidHighlightRange = { NSNotFound, 0 };
 
@@ -22,6 +23,8 @@ const NSRange CKTextComponentLayerInvalidHighlightRange = { NSNotFound, 0 };
 @property (nonatomic, assign) NSRange highlightedRange;
 
 @property (nonatomic, strong) UIColor *highlightColor;
+
+@property (nonatomic, assign) CKTextKitRendererMeasureOption measureOption;
 
 - (void)layoutHighlight;
 

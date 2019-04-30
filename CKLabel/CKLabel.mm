@@ -31,6 +31,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     NSAttributedString *_innerAttributedText;
     NSAttributedString *_innerTruncationAttributedText;
     CKTextKitCommonAttributes *_commonAttrs;
+    CGRect _bounds;
 }
 
 @property(nonatomic, readonly) CKTextComponentLayer *textLayer;
@@ -64,6 +65,16 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)layoutSubviews {
     [super layoutSubviews];
 
+    if (CGRectEqualToRect(_bounds, self.bounds) &&
+        _commonAttrs->lineBreakMode == _lineBreakMode &&
+        _commonAttrs->maximumNumberOfLines == _numberOfLines &&
+        (self.attributedText && [_commonAttrs->attributedString isEqualToAttributedString:self.attributedText]) &&
+        (self.truncationAttributedText && [_commonAttrs->truncationAttributedString isEqualToAttributedString:self.truncationAttributedText])) {
+        // do nothing.
+        return;
+    }
+
+    _bounds = self.bounds;
     _commonAttrs->lineBreakMode = _lineBreakMode;
     _commonAttrs->maximumNumberOfLines = _numberOfLines;
     _commonAttrs->attributedString = self.attributedText;

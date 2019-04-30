@@ -7,9 +7,79 @@
 //
 
 #import "ViewController.h"
+#import <CommonCrypto/CommonRandom.h>
 @import CKLabel;
 
-@interface ViewController ()
+@interface NSString (Random)
+
+@end
+
+@implementation NSString (Random)
+
++ (NSMutableString *)randomStringWithLength:(NSInteger)length {
+    static char a[] = {
+        '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+        'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+        'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
+    };
+
+    NSMutableString *string = NSMutableString.string;
+    char *bytes = new char[length];
+    CCRNGStatus status = CCRandomGenerateBytes(bytes, length);
+    if (status == kCCSuccess) {
+        for (NSInteger i = 0; i < length; i++) {
+            NSInteger idx = abs(bytes[i]) % 62;
+            [string appendFormat:@"%c", a[idx]];
+        }
+    }
+
+    delete [] bytes;
+
+    return string;
+}
+
+@end
+
+@interface DemoCell : UITableViewCell {
+    CKLabel *_textLabel;
+}
+
+- (void)updateContent;
+
+@end
+
+@implementation DemoCell
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        _textLabel = [[CKLabel alloc] initWithFrame:CGRectZero];
+        _textLabel.font = [UIFont systemFontOfSize:15];
+        _textLabel.textColor = UIColor.grayColor;
+        _textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        [self.contentView addSubview:_textLabel];
+        _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
+        [self.contentView addConstraints:@[
+                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:20],
+                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:20],
+                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-20],
+                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:-20]
+                                           ]];
+    }
+
+    return self;
+}
+
+- (void)updateContent {
+    _textLabel.text = [NSString randomStringWithLength:1024];
+}
+
+@end
+
+@interface ViewController () <UITableViewDelegate, UITableViewDataSource> {
+    UITableView *_tableView;
+}
 
 @end
 
@@ -17,63 +87,37 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    CKLabel *ckClickableLabel = [[CKLabel alloc] init];
-    ckClickableLabel.attributedText = [[NSAttributedString alloc] initWithString:@"a coder's notepad"
-                                                                      attributes:@{
-                                                                                   NSForegroundColorAttributeName: UIColor.purpleColor,
-                                                                                   NSFontAttributeName: [UIFont systemFontOfSize:15],
-                                                                                   CKTextKitEntityAttributeName: [[CKTextKitEntityAttribute alloc] initWithEntity:@"https://lvv.me"]
-                                                                                   }];
-    ckClickableLabel.didTapText = ^(NSRange range, NSDictionary *attrs) {
-        NSString *urlString = (NSString *)attrs.ck_entityAttribute;
-        [UIApplication.sharedApplication openURL:[NSURL URLWithString:urlString]];
-    };
-    [self.view addSubview:ckClickableLabel];
-    CGSize size = [ckClickableLabel sizeThatFits:CGSizeMake(300, INFINITY)];
-    ckClickableLabel.frame = CGRectMake(10, 50, size.width, size.height);
-    
-    CKLabel *ckAsyncLabel = [[CKLabel alloc] init];
-    ckAsyncLabel.font = [UIFont systemFontOfSize:15];
-    ckAsyncLabel.textColor = UIColor.orangeColor;
-    ckAsyncLabel.numberOfLines = 3;
-    ckAsyncLabel.lineBreakMode = NSLineBreakByTruncatingTail;
-    ckAsyncLabel.text = @"Shall I compare thee to a summer's day?\n"
-                        @"Thou art more lovely and more temperate:\n"
-                        @"Rough winds do shake the darling buds of May,\n"
-                        @"And summer's lease hath all too short a date:\n"
-                        @"Sometime too hot the eye of heaven shines,\n"
-                        @"And often is his gold complexion dimm'd;\n"
-                        @"And every fair from fair sometime declines,\n"
-                        @"By chance or nature's changing course untrimm'd\n"
-                        @"But thy eternal summer shall not fade\n"
-                        @"Nor lose possession of that fair thou owest;\n"
-                        @"Nor shall Death brag thou wander'st in his shade,\n"
-                        @"When in eternal lines to time thou growest:\n"
-                        @"So long as men can breathe or eyes can see,\n"
-                        @"So long lives this and this gives life to thee.";
-    [self.view addSubview:ckAsyncLabel];
-    
-    // auto layout
-    ckAsyncLabel.translatesAutoresizingMaskIntoConstraints = NO;
-    
-    NSLayoutConstraint *c = [NSLayoutConstraint constraintWithItem:ckAsyncLabel attribute:NSLayoutAttributeTop
-                                                         relatedBy:NSLayoutRelationEqual
-                                                            toItem:ckClickableLabel attribute:NSLayoutAttributeBottom
-                                                        multiplier:1 constant:10];
-    [self.view addConstraint:c];
-    
-    c = [NSLayoutConstraint constraintWithItem:ckAsyncLabel attribute:NSLayoutAttributeLeft
-                                     relatedBy:NSLayoutRelationEqual
-                                        toItem:self.view attribute:NSLayoutAttributeLeft
-                                    multiplier:1 constant:10];
-    [self.view addConstraint:c];
-    
-    c = [NSLayoutConstraint constraintWithItem:ckAsyncLabel attribute:NSLayoutAttributeRight
-                                     relatedBy:NSLayoutRelationEqual
-                                        toItem:self.view attribute:NSLayoutAttributeRight
-                                    multiplier:1 constant:-10];
-    [self.view addConstraint:c];
+
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    _tableView.estimatedRowHeight = 0;
+    _tableView.estimatedSectionHeaderHeight = 0;
+    _tableView.estimatedSectionFooterHeight = 0;
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    [_tableView registerClass:DemoCell.class forCellReuseIdentifier:NSStringFromClass(DemoCell.class)];
+    [self.view addSubview:_tableView];
+    _tableView.translatesAutoresizingMaskIntoConstraints = NO;
+    [self.view addConstraints:@[
+                                [NSLayoutConstraint constraintWithItem:_tableView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1 constant:0],
+                                [NSLayoutConstraint constraintWithItem:_tableView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeft multiplier:1 constant:0],
+                                [NSLayoutConstraint constraintWithItem:_tableView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1 constant:0],
+                                [NSLayoutConstraint constraintWithItem:_tableView attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeRight multiplier:1 constant:0]
+                                ]];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DemoCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(DemoCell.class) forIndexPath:indexPath];
+    [cell updateContent];
+
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 220;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 100;
 }
 
 @end

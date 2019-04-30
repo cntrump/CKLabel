@@ -15,6 +15,58 @@
                                     blue:((rgb) & 0xff) / 255.0 \
                                    alpha:1]
 
+#pragma mark - UIFont (icofont)
+
+@interface UIFont (icofont)
+
++ (UIFont *)fontOfSize:(CGFloat)fontSize;
++ (UIFont *)boldFontOfSize:(CGFloat)fontSize;
++ (UIFont *)italicFontOfSize:(CGFloat)fontSize;
+
+@end
+
+@implementation UIFont (icofont)
+
++ (UIFont *)fontOfSize:(CGFloat)fontSize {
+    UIFont *systemFont = [UIFont systemFontOfSize:fontSize];
+
+    NSMutableDictionary *attrs = NSMutableDictionary.dictionary;
+    attrs[UIFontDescriptorNameAttribute] = @"icofont";
+    attrs[UIFontDescriptorCascadeListAttribute] = @[[UIFontDescriptor fontDescriptorWithName:systemFont.fontName size:fontSize]];
+
+    UIFontDescriptor *fd = [UIFontDescriptor fontDescriptorWithFontAttributes:attrs];
+
+    return [UIFont fontWithDescriptor:fd size:fontSize];
+}
+
++ (UIFont *)boldFontOfSize:(CGFloat)fontSize {
+    UIFont *systemFont = [UIFont boldSystemFontOfSize:fontSize];
+
+    NSMutableDictionary *attrs = NSMutableDictionary.dictionary;
+    attrs[UIFontDescriptorNameAttribute] = @"icofont";
+    attrs[UIFontDescriptorCascadeListAttribute] = @[[UIFontDescriptor fontDescriptorWithName:systemFont.fontName size:fontSize]];
+
+    UIFontDescriptor *fd = [UIFontDescriptor fontDescriptorWithFontAttributes:attrs];
+
+    return [UIFont fontWithDescriptor:fd size:fontSize];
+}
+
++ (UIFont *)italicFontOfSize:(CGFloat)fontSize {
+    UIFont *systemFont = [UIFont italicSystemFontOfSize:fontSize];
+
+    NSMutableDictionary *attrs = NSMutableDictionary.dictionary;
+    attrs[UIFontDescriptorNameAttribute] = @"icofont";
+    attrs[UIFontDescriptorCascadeListAttribute] = @[[UIFontDescriptor fontDescriptorWithName:systemFont.fontName size:fontSize]];
+
+    UIFontDescriptor *fd = [UIFontDescriptor fontDescriptorWithFontAttributes:attrs];
+
+    return [UIFont fontWithDescriptor:fd size:fontSize];
+}
+
+@end
+
+#pragma mark - NSString (Random)
+
 @interface NSString (Random)
 
 @end
@@ -46,6 +98,8 @@
 }
 
 @end
+
+#pragma mark - DemoCell
 
 @interface DemoCell : UITableViewCell {
     CKLabel *_textLabel;
@@ -79,19 +133,23 @@
 }
 
 - (void)updateContent {
-    NSString *text = [NSString randomStringWithLength:1024];
+    NSMutableString *text = [NSString randomStringWithLength:1024];
+    [text insertString:@"\U0000ef70" atIndex:30];
+    [text insertString:@"\U0000ef71" atIndex:180];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text
                                                                                    attributes:@{
-                                                                                                NSFontAttributeName: [UIFont systemFontOfSize:15],
+                                                                                                NSFontAttributeName: [UIFont fontOfSize:15],
                                                                                                 NSForegroundColorAttributeName: RGB(0x515151)
                                                                                                 }];
     [attrString addAttributes:@{
+                                NSFontAttributeName: [UIFont boldFontOfSize:15],
                                 CKTextKitEntityAttributeName: [[CKTextKitEntityAttribute alloc] initWithEntity:@"link"],
                                 NSForegroundColorAttributeName: RGB(0x576b95),
                                 NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle)
                                 }
                        range:NSMakeRange(30, 50)];
     [attrString addAttributes:@{
+                                NSFontAttributeName: [UIFont italicFontOfSize:15],
                                 CKTextKitEntityAttributeName: [[CKTextKitEntityAttribute alloc] initWithEntity:@"link"],
                                 NSForegroundColorAttributeName: RGB(0x576b95),
                                 NSUnderlineStyleAttributeName: @(NSUnderlineStyleDouble)
@@ -101,6 +159,8 @@
 }
 
 @end
+
+#pragma mark - ViewController
 
 @interface ViewController () <UITableViewDelegate, UITableViewDataSource> {
     UITableView *_tableView;

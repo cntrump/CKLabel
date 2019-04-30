@@ -23,6 +23,7 @@
 		736458E62226C4D90016656B /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E52226C4D90016656B /* CoreText.framework */; };
 		736458E82226C5470016656B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E72226C5470016656B /* CoreGraphics.framework */; };
 		736458EA2226C5850016656B /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 736458E92226C5850016656B /* QuartzCore.framework */; };
+		7380495A22782C6100A4D678 /* fonts.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7380495922782C6100A4D678 /* fonts.bundle */; };
 		738DE4AF2231472B008DC65A /* NSDictionary+CKTextKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 738DE4AD2231472B008DC65A /* NSDictionary+CKTextKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		738DE4B02231472B008DC65A /* NSDictionary+CKTextKit.mm in Sources */ = {isa = PBXBuildFile; fileRef = 738DE4AE2231472B008DC65A /* NSDictionary+CKTextKit.mm */; };
 		739CB7C52234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7912234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h */; };
@@ -108,6 +109,7 @@
 		736458E52226C4D90016656B /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		736458E72226C5470016656B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		736458E92226C5850016656B /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7380495922782C6100A4D678 /* fonts.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = fonts.bundle; sourceTree = "<group>"; };
 		738DE4AD2231472B008DC65A /* NSDictionary+CKTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CKTextKit.h"; sourceTree = "<group>"; };
 		738DE4AE2231472B008DC65A /* NSDictionary+CKTextKit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSDictionary+CKTextKit.mm"; sourceTree = "<group>"; };
 		739CB7912234FDA6003C7DDB /* CKTextComponentLayerHighlighter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKTextComponentLayerHighlighter.h; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 		736458C82226C1360016656B /* CKLabelTestHost */ = {
 			isa = PBXGroup;
 			children = (
+				7380495922782C6100A4D678 /* fonts.bundle */,
 				736458C92226C1360016656B /* AppDelegate.h */,
 				736458CA2226C1360016656B /* AppDelegate.mm */,
 				736458CC2226C1360016656B /* ViewController.h */,
@@ -466,6 +469,7 @@
 			files = (
 				736458D62226C1370016656B /* LaunchScreen.storyboard in Resources */,
 				736458D32226C1370016656B /* Assets.xcassets in Resources */,
+				7380495A22782C6100A4D678 /* fonts.bundle in Resources */,
 				736458D12226C1360016656B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

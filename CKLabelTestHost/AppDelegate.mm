@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <CoreText/CoreText.h>
 
 @interface AppDelegate ()
 
@@ -16,7 +17,10 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    NSBundle *fontsBundle = [NSBundle bundleWithPath:[NSBundle.mainBundle pathForResource:@"fonts" ofType:@"bundle"]];
+    NSURL *fontPathUrl = [fontsBundle URLForResource:@"icofont" withExtension:@"ttf"];
+    CTFontManagerRegisterFontsForURL((CFURLRef)fontPathUrl, kCTFontManagerScopeProcess, NULL);
+
     return YES;
 }
 

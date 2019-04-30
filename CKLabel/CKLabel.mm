@@ -31,7 +31,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     NSAttributedString *_innerAttributedText;
     NSAttributedString *_innerTruncationAttributedText;
     CKTextKitCommonAttributes *_commonAttrs;
-    CGRect _bounds;
+    NSMutableParagraphStyle *_paragraphStyle;
 }
 
 @property(nonatomic, readonly) CKTextComponentLayer *textLayer;
@@ -39,6 +39,14 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 @end
 
 @implementation CKLabel
+
+- (NSString *)debugDescription {
+    return [NSString stringWithFormat:@"<%@: %p; baseClass: %@; frame:(%lf %lf, %lf %lf); layer= <%@: %p>; '%@'>",
+            NSStringFromClass(self.class), self, NSStringFromClass(self.superclass),
+            CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame),
+            NSStringFromClass(self.layer.class), self.layer,
+            _innerAttributedText ? _innerAttributedText.string : _text];
+}
 
 - (void)dealloc {
     delete _commonAttrs;
@@ -50,6 +58,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
         _textColor = UIColor.blackColor;
         _textAlignment = NSTextAlignmentNatural;
         _commonAttrs = new CKTextKitCommonAttributes;
+        _paragraphStyle = NSParagraphStyle.defaultParagraphStyle.mutableCopy;
         self.highlightColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.25];
         self.textLayer.displayMode = CKAsyncLayerDisplayModeAlwaysAsync;
         [self addTarget:self action:@selector(didTapText:) forControlEvents:CKUIControlEventTextViewDidTapText];
@@ -65,16 +74,6 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    if (CGRectEqualToRect(_bounds, self.bounds) &&
-        _commonAttrs->lineBreakMode == _lineBreakMode &&
-        _commonAttrs->maximumNumberOfLines == _numberOfLines &&
-        (self.attributedText && [_commonAttrs->attributedString isEqualToAttributedString:self.attributedText]) &&
-        (self.truncationAttributedText && [_commonAttrs->truncationAttributedString isEqualToAttributedString:self.truncationAttributedText])) {
-        // do nothing.
-        return;
-    }
-
-    _bounds = self.bounds;
     _commonAttrs->lineBreakMode = _lineBreakMode;
     _commonAttrs->maximumNumberOfLines = _numberOfLines;
     _commonAttrs->attributedString = self.attributedText;
@@ -94,6 +93,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     return [self sizeThatFits:CGSizeMake(w, INFINITY)];
 }
 
+#pragma mark - setter
+
 - (void)setBounds:(CGRect)bounds {
     [super setBounds:bounds];
     
@@ -110,6 +111,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setPreferredMaxLayoutWidth:(CGFloat)preferredMaxLayoutWidth {
+    if (_preferredMaxLayoutWidth == preferredMaxLayoutWidth) {
+        return;
+    }
+
     _preferredMaxLayoutWidth = preferredMaxLayoutWidth;
     
     [self invalidateIntrinsicContentSize];
@@ -117,8 +122,12 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setHighlightColor:(UIColor *)highlightColor {
+    if (_highlightColor == highlightColor) {
+        return;
+    }
+
     _highlightColor = highlightColor;
-    self.textLayer.highlighter.highlightColor = highlightColor;
+    self.textLayer.highlighter.highlightColor = _highlightColor;
 }
 
 - (NSAttributedString *)attributedText {
@@ -134,6 +143,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setAttributedText:(NSAttributedString *)attributedText {
+    if (_innerAttributedText && [attributedText isEqualToAttributedString:_innerAttributedText]) {
+        return;
+    }
+
     _text = nil;
     _innerAttributedText = attributedText.copy;
     
@@ -141,6 +154,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setText:(NSString *)text {
+    if (_text && [text isEqualToString:_text]) {
+        return;
+    }
+
     _innerAttributedText = nil;
     _text = text.copy;
 
@@ -148,6 +165,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setFont:(UIFont *)font {
+    if (_font == font) {
+        return;
+    }
+
     _font = font;
     
     if (_text) {
@@ -156,6 +177,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTextColor:(UIColor *)textColor {
+    if (_textColor == textColor) {
+        return;
+    }
+
     _textColor = textColor;
     if (!_truncationTextColor) {
         _truncationTextColor = textColor;
@@ -179,6 +204,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTruncationAttributedText:(NSAttributedString *)truncationAttributedText {
+    if (_innerTruncationAttributedText && [truncationAttributedText isEqualToAttributedString:_innerTruncationAttributedText]) {
+        return;
+    }
+
     _truncationText = nil;
     _innerTruncationAttributedText = truncationAttributedText.copy;
     
@@ -186,6 +215,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTruncationText:(NSString *)truncationText {
+    if (_truncationText && [truncationText isEqualToString:_truncationText]) {
+        return;
+    }
+
     _innerTruncationAttributedText = nil;
     _truncationText = truncationText.copy;
 
@@ -193,6 +226,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTruncationTextColor:(UIColor *)truncationTextColor {
+    if (_truncationTextColor == truncationTextColor) {
+        return;
+    }
+
     _truncationTextColor = truncationTextColor;
     
     if (_truncationText) {
@@ -201,6 +238,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
+    if (_textAlignment == textAlignment) {
+        return;
+    }
+
     _textAlignment = textAlignment;
 
     if (_text || _truncationText) {
@@ -209,6 +250,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setLineSpacing:(CGFloat)lineSpacing {
+    if (_lineSpacing == lineSpacing) {
+        return;
+    }
+
     _lineSpacing = lineSpacing;
 
     if (_text || _truncationText) {
@@ -217,6 +262,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setParagraphSpacing:(CGFloat)paragraphSpacing {
+    if (_paragraphSpacing == paragraphSpacing) {
+        return;
+    }
+
     _paragraphSpacing = paragraphSpacing;
 
     if (_text || _truncationText) {
@@ -225,6 +274,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setLineHeightMultiple:(CGFloat)lineHeightMultiple {
+    if (_lineHeightMultiple == lineHeightMultiple) {
+        return;
+    }
+
     _lineHeightMultiple = lineHeightMultiple;
 
     if (_text || _truncationText) {
@@ -233,6 +286,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setParagraphSpacingBefore:(CGFloat)paragraphSpacingBefore {
+    if (_paragraphSpacingBefore == paragraphSpacingBefore) {
+        return;
+    }
+
     _paragraphSpacingBefore = paragraphSpacingBefore;
 
     if (_text || _truncationText) {
@@ -241,6 +298,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setLineBreakMode:(NSLineBreakMode)lineBreakMode {
+    if (_lineBreakMode == lineBreakMode) {
+        return;
+    }
+
     _lineBreakMode = lineBreakMode;
 
     if (_text || _truncationText) {
@@ -249,6 +310,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setNumberOfLines:(NSUInteger)numberOfLines {
+    if (_numberOfLines == numberOfLines) {
+        return;
+    }
+
     _numberOfLines = numberOfLines;
 
     if (_text || _truncationText) {
@@ -256,15 +321,16 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     }
 }
 
-- (NSParagraphStyle *)paragraphStyle {
-    NSMutableParagraphStyle *style = NSParagraphStyle.defaultParagraphStyle.mutableCopy;
-    style.alignment = _textAlignment;
-    style.lineSpacing = _lineSpacing;
-    style.paragraphSpacing = _paragraphSpacing;
-    style.lineHeightMultiple = _lineHeightMultiple;
-    style.paragraphSpacingBefore = _paragraphSpacingBefore;
+#pragma mark -
 
-    return style;
+- (NSParagraphStyle *)paragraphStyle {
+    _paragraphStyle.alignment = _textAlignment;
+    _paragraphStyle.lineSpacing = _lineSpacing;
+    _paragraphStyle.paragraphSpacing = _paragraphSpacing;
+    _paragraphStyle.lineHeightMultiple = _lineHeightMultiple;
+    _paragraphStyle.paragraphSpacingBefore = _paragraphSpacingBefore;
+
+    return _paragraphStyle;
 }
 
 - (void)updateContent {

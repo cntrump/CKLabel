@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import <CKLabel/CKAsyncLayer.h>
 #import <CKLabel/CKTextComponentView.h>
 #import <CKLabel/CKTextKitAttributes.h>
 #import <CKLabel/CKTextKitEntityAttribute.h>
@@ -15,6 +16,8 @@
 #import <CKLabel/NSDictionary+CKTextKit.h>
 
 @interface CKLabel : CKTextComponentView
+
+@property (nonatomic, assign) CKAsyncLayerDisplayMode displayMode;
 
 @property(nullable, nonatomic, copy) NSString *text;
 @property(nullable, nonatomic, strong) UIFont *font;

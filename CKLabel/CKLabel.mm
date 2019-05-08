@@ -62,11 +62,16 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
         _paragraphStyle = NSParagraphStyle.defaultParagraphStyle.mutableCopy;
         self.highlightColor = [UIColor colorWithRed:0.0 green:122.0/255.0 blue:1.0 alpha:0.25];
         self.textLayer.highlighter.measureOption = CKTextKitRendererMeasureOptionLineHeight;
-        self.textLayer.displayMode = CKAsyncLayerDisplayModeAlwaysAsync;
+        self.displayMode = CKAsyncLayerDisplayModeAlwaysAsync;
         [self addTarget:self action:@selector(didTapText:) forControlEvents:CKUIControlEventTextViewDidTapText];
     }
     
     return self;
+}
+
+- (void)setDisplayMode:(CKAsyncLayerDisplayMode)displayMode {
+    _displayMode = displayMode;
+    self.textLayer.displayMode = displayMode;
 }
 
 - (CKTextComponentLayer *)textLayer {

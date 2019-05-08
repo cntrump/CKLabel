@@ -64,7 +64,7 @@
 		739CB7E82234FDA6003C7DDB /* CKHighlightOverlayLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B62234FDA6003C7DDB /* CKHighlightOverlayLayer.h */; };
 		739CB7E92234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B72234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h */; };
 		739CB7EA2234FDA6003C7DDB /* CKAsyncTransactionGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7B82234FDA6003C7DDB /* CKAsyncTransactionGroup.m */; };
-		739CB7EB2234FDA6003C7DDB /* CKAsyncLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B92234FDA6003C7DDB /* CKAsyncLayer.h */; };
+		739CB7EB2234FDA6003C7DDB /* CKAsyncLayer.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7B92234FDA6003C7DDB /* CKAsyncLayer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		739CB7EC2234FDA6003C7DDB /* CKAsyncTransactionContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7BA2234FDA6003C7DDB /* CKAsyncTransactionContainer.m */; };
 		739CB7ED2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 739CB7BB2234FDA6003C7DDB /* CKHighlightOverlayLayer.mm */; };
 		739CB7EE2234FDA6003C7DDB /* CKTextComponentViewInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 739CB7BC2234FDA6003C7DDB /* CKTextComponentViewInternal.h */; };
@@ -351,6 +351,7 @@
 				739CB7F42234FDA6003C7DDB /* CKAssert.h in Headers */,
 				739CB7DA2234FDA6003C7DDB /* CKTextKitEntityAttribute.h in Headers */,
 				739CB7F52234FDA6003C7DDB /* CKInternalHelpers.h in Headers */,
+				739CB7EB2234FDA6003C7DDB /* CKAsyncLayer.h in Headers */,
 				739CB7E32234FDA6003C7DDB /* CKAsyncTransactionContainer.h in Headers */,
 				739CB7D22234FDA6003C7DDB /* CKTextKitRendererCache.h in Headers */,
 				739CB7E92234FDA6003C7DDB /* CKAsyncTransactionContainer+Private.h in Headers */,
@@ -360,7 +361,6 @@
 				739CB7E42234FDA6003C7DDB /* CKAsyncTransaction.h in Headers */,
 				739CB7DB2234FDA6003C7DDB /* CKTextKitRenderer.h in Headers */,
 				739CB7CF2234FDA6003C7DDB /* CKTextKitRenderer+TextChecking.h in Headers */,
-				739CB7EB2234FDA6003C7DDB /* CKAsyncLayer.h in Headers */,
 				739CB7F32234FDA6003C7DDB /* CKEqualityHashHelpers.h in Headers */,
 				739CB7CA2234FDA6003C7DDB /* CKTextKitRenderer+Positioning.h in Headers */,
 				739CB7CE2234FDA6003C7DDB /* CKTextKitTruncating.h in Headers */,

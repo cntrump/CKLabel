@@ -28,6 +28,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 };
 
 @interface CKLabel () {
+    NSString *_text;
     NSAttributedString *_innerAttributedText;
     NSAttributedString *_innerTruncationAttributedText;
     CKTextKitCommonAttributes *_commonAttrs;
@@ -152,6 +153,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     _innerAttributedText = attributedText.copy;
     
     [self updateContent];
+}
+
+- (NSString *)text {
+    return _innerAttributedText.string;
 }
 
 - (void)setText:(NSString *)text {

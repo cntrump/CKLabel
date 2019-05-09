@@ -87,6 +87,20 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     _commonAttrs->truncationAttributedString = self.truncationAttributedText;
     CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
 
+    std::vector<NSRange> visibleRanges = renderer.visibleRanges;
+    _visibleCharacterRange = NSMakeRange(NSNotFound, 0);
+    
+    size_t len = visibleRanges.size();
+    for (size_t i = 0; i < len; i++) {
+        NSRange r = visibleRanges[i];
+
+        if (_visibleCharacterRange.location == NSNotFound) {
+            _visibleCharacterRange.location = r.location;
+        }
+
+        _visibleCharacterRange.length += r.length;
+    }
+
     self.renderer = renderer;
 }
 

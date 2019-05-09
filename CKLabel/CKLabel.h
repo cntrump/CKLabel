@@ -18,6 +18,7 @@
 @interface CKLabel : CKTextComponentView
 
 @property (nonatomic, assign) CKAsyncLayerDisplayMode displayMode;
+@property (nonatomic, readonly) NSRange visibleCharacterRange;
 
 @property(nullable, nonatomic, copy) NSString *text;
 @property(nullable, nonatomic, strong) UIFont *font;

@@ -155,6 +155,13 @@
                                 NSUnderlineStyleAttributeName: @(NSUnderlineStyleDouble)
                                 }
                         range:NSMakeRange(180, 50)];
+    [attrString addAttributes:@{
+                                NSFontAttributeName: [UIFont italicFontOfSize:15],
+                                CKTextKitEntityAttributeName: [[CKTextKitEntityAttribute alloc] initWithEntity:@"link2"],
+                                NSForegroundColorAttributeName: RGB(0xff0000),
+                                NSUnderlineStyleAttributeName: @(NSUnderlineStyleDouble)
+                                }
+                        range:NSMakeRange(230, 50)];
     _textLabel.attributedText = attrString;
 }
 

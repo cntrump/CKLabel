@@ -83,16 +83,18 @@
       result = [[CKTextKitTextCheckingResult alloc] initWithType:CKTextKitTextCheckingTypeTruncation
                                                  entityAttribute:nil
                                                            range:truncationTokenRange];
+      *stop = YES;
     } else {
       NSRange range;
-      NSDictionary *attributes = [attributedString attributesAtIndex:index effectiveRange:&range];
-      CKTextKitEntityAttribute *entityAttribute = attributes[CKTextKitEntityAttributeName];
+      CKTextKitEntityAttribute *entityAttribute = [attributedString attribute:CKTextKitEntityAttributeName
+                                                                      atIndex:index longestEffectiveRange:&range inRange:visibleRange];
       CGFloat distance = hypot(CGRectGetMidX(glyphBoundingRect) - point.x, CGRectGetMidY(glyphBoundingRect) - point.y);
       if (entityAttribute && distance < minDistance) {
         result = [[CKTextKitTextCheckingResult alloc] initWithType:CKTextKitTextCheckingTypeEntity
                                                    entityAttribute:entityAttribute
                                                              range:range];
         minDistance = distance;
+        *stop = YES;
       }
     }
   }];

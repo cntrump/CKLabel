@@ -83,8 +83,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
     _commonAttrs->lineBreakMode = _lineBreakMode;
     _commonAttrs->maximumNumberOfLines = _numberOfLines;
-    _commonAttrs->attributedString = self.attributedText;
-    _commonAttrs->truncationAttributedString = self.truncationAttributedText;
+    _commonAttrs->attributedString = self.attributedText.copy;
+    _commonAttrs->truncationAttributedString = self.truncationAttributedText.copy;
     CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
 
     std::vector<NSRange> visibleRanges = renderer.visibleRanges;
@@ -164,10 +164,6 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setAttributedText:(NSAttributedString *)attributedText {
-    if (_innerAttributedText && [attributedText isEqualToAttributedString:_innerAttributedText]) {
-        return;
-    }
-
     _text = nil;
     _innerAttributedText = attributedText.copy;
     
@@ -179,10 +175,6 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setText:(NSString *)text {
-    if (_text && [text isEqualToString:_text]) {
-        return;
-    }
-
     _innerAttributedText = nil;
     _text = text.copy;
 
@@ -229,10 +221,6 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTruncationAttributedText:(NSAttributedString *)truncationAttributedText {
-    if (_innerTruncationAttributedText && [truncationAttributedText isEqualToAttributedString:_innerTruncationAttributedText]) {
-        return;
-    }
-
     _truncationText = nil;
     _innerTruncationAttributedText = truncationAttributedText.copy;
     
@@ -240,10 +228,6 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)setTruncationText:(NSString *)truncationText {
-    if (_truncationText && [truncationText isEqualToString:_truncationText]) {
-        return;
-    }
-
     _innerTruncationAttributedText = nil;
     _truncationText = truncationText.copy;
 

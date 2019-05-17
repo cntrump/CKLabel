@@ -33,9 +33,12 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     NSAttributedString *_innerTruncationAttributedText;
     CKTextKitCommonAttributes *_commonAttrs;
     NSMutableParagraphStyle *_paragraphStyle;
+    BOOL _needUpdate;
 }
 
 @property(nonatomic, readonly) CKTextComponentLayer *textLayer;
+
+@property(nonatomic, strong) CKTextKitRenderer *innerRenderer;
 
 @end
 
@@ -55,6 +58,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        _needUpdate = YES;
         _font = [UIFont systemFontOfSize:17];
         _textColor = UIColor.blackColor;
         _textAlignment = NSTextAlignmentNatural;
@@ -81,37 +85,60 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    _commonAttrs->lineBreakMode = _lineBreakMode;
-    _commonAttrs->maximumNumberOfLines = _numberOfLines;
-    _commonAttrs->attributedString = self.attributedText.copy;
-    _commonAttrs->truncationAttributedString = self.truncationAttributedText.copy;
-    CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
+    self.renderer = self.innerRenderer;
+}
 
-    std::vector<NSRange> visibleRanges = renderer.visibleRanges;
-    _visibleCharacterRange = NSMakeRange(NSNotFound, 0);
+- (CGSize)sizeThatFits:(CGSize)size {
+    [super sizeThatFits:size];
+
+    __block CGRect usedRect = CGRectZero;
+    CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:size];
+    [renderer.context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
+        usedRect = [layoutManager usedRectForTextContainer:textContainer];
+    }];
+
+    return CGRectIntegral(usedRect).size;
+}
+
+- (CGSize)intrinsicContentSize {
+    [super intrinsicContentSize];
+
+    CGFloat w = _preferredMaxLayoutWidth > 0 ? _preferredMaxLayoutWidth : INFINITY;
     
+    return [self sizeThatFits:CGSizeMake(w, INFINITY)];
+}
+
+#pragma mark - getter
+
+- (CKTextKitRenderer *)innerRenderer {
+    if (!CGSizeEqualToSize(_innerRenderer.constrainedSize, self.bounds.size) || _needUpdate) {
+        _commonAttrs->lineBreakMode = _lineBreakMode;
+        _commonAttrs->maximumNumberOfLines = _numberOfLines;
+        _commonAttrs->truncationAttributedString = self.truncationAttributedText;
+        _commonAttrs->attributedString = self.attributedText;
+        _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:self.bounds.size];
+        _needUpdate = NO;
+    }
+
+    return _innerRenderer;
+}
+
+- (NSRange)visibleCharacterRange {
+    std::vector<NSRange> visibleRanges = self.innerRenderer.visibleRanges;
+    NSRange visibleCharacterRange = NSMakeRange(NSNotFound, 0);
+
     size_t len = visibleRanges.size();
     for (size_t i = 0; i < len; i++) {
         NSRange r = visibleRanges[i];
 
-        if (_visibleCharacterRange.location == NSNotFound) {
-            _visibleCharacterRange.location = r.location;
+        if (visibleCharacterRange.location == NSNotFound) {
+            visibleCharacterRange.location = r.location;
         }
 
-        _visibleCharacterRange.length += r.length;
+        visibleCharacterRange.length += r.length;
     }
 
-    self.renderer = renderer;
-}
-
-- (CGSize)sizeThatFits:(CGSize)size {
-    return [self.attributedText ck_boundingSizeWithSize:size lineBreakMode:_lineBreakMode maximumNumberOfLines:_numberOfLines];
-}
-
-- (CGSize)intrinsicContentSize {
-    CGFloat w = _preferredMaxLayoutWidth > 0 ? _preferredMaxLayoutWidth : INFINITY;
-    
-    return [self sizeThatFits:CGSizeMake(w, INFINITY)];
+    return visibleCharacterRange;
 }
 
 #pragma mark - setter
@@ -152,7 +179,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (NSAttributedString *)attributedText {
-    if (_text) {
+    if (_text && !_innerAttributedText && _needUpdate) {
         _innerAttributedText = [[NSAttributedString alloc] initWithString:_text attributes:@{
                                                                                         NSFontAttributeName: _font,
                                                                                         NSForegroundColorAttributeName: _textColor,
@@ -209,7 +236,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (NSAttributedString *)truncationAttributedText {
-    if (_truncationText) {
+    if (_truncationText && !_innerTruncationAttributedText && _needUpdate) {
         _innerTruncationAttributedText = [[NSAttributedString alloc] initWithString:_truncationText attributes:@{
                                                                                              NSFontAttributeName: _font,
                                                                                              NSForegroundColorAttributeName: _truncationTextColor,
@@ -343,6 +370,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (void)updateContent {
+    _needUpdate = YES;
     [self invalidateIntrinsicContentSize];
     [self setNeedsLayout];
 }

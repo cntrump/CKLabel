@@ -113,6 +113,8 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         _textLabel = [[CKLabel alloc] initWithFrame:CGRectZero];
         _textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         _textLabel.numberOfLines  = 8;

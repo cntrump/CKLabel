@@ -10,6 +10,7 @@
 #import "CKTextKitContext.h"
 #import "CKTextKitAttributes.h"
 #import "CKTextKitEntityAttribute.h"
+#import "CKLayoutManager.h"
 
 @implementation NSAttributedString (CKTextKit)
 
@@ -20,7 +21,7 @@
                                                                      lineBreakMode:lineBreakMode
                                                               maximumNumberOfLines:maximumNumberOfLines
                                                                    constrainedSize:size
-                                                              layoutManagerFactory:NULL];
+                                                              layoutManagerFactory:&CKLayoutManagerFactory];
     [context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
         boundingSize = CGRectIntegral([layoutManager usedRectForTextContainer:textContainer]).size;
     }];

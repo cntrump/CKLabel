@@ -11,6 +11,7 @@
 #import "CKTextKitContext.h"
 #import "CKTextKitRenderer+TextChecking.h"
 #import "CKTextComponentLayerHighlighter.h"
+#import "CKLayoutManager.h"
 
 struct CKTextKitCommonAttributes : CKTextKitAttributes {
     CKTextKitCommonAttributes () {
@@ -91,6 +92,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     commonAttrs.maximumNumberOfLines = _numberOfLines;
     commonAttrs.truncationAttributedString = self.truncationAttributedText;
     commonAttrs.attributedString = self.attributedText;
+    commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
 
     __block CGRect usedRect = CGRectZero;
     CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:commonAttrs constrainedSize:size];
@@ -117,6 +119,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
         _commonAttrs.maximumNumberOfLines = _numberOfLines;
         _commonAttrs.truncationAttributedString = self.truncationAttributedText;
         _commonAttrs.attributedString = self.attributedText;
+        _commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
+
         _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs constrainedSize:self.bounds.size];
         _needUpdate = NO;
     }

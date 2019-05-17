@@ -115,6 +115,7 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         _textLabel = [[CKLabel alloc] initWithFrame:CGRectZero];
         _textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        _textLabel.numberOfLines  = 8;
         _textLabel.didTapText = ^(NSRange range, NSDictionary * _Nonnull attrs) {
             NSString *link = (NSString *)attrs.ck_entityAttribute;
             NSLog(@"<did tap; range: %ld-%ld; '%@'>", range.location, range.length, link);
@@ -122,10 +123,9 @@
         [self.contentView addSubview:_textLabel];
         _textLabel.translatesAutoresizingMaskIntoConstraints = NO;
         [self.contentView addConstraints:@[
-                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeTop multiplier:1 constant:20],
                                            [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeLeft multiplier:1 constant:20],
-                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeBottom multiplier:1 constant:-20],
-                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:-20]
+                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeRight multiplier:1 constant:-20],
+                                           [NSLayoutConstraint constraintWithItem:_textLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:self.contentView attribute:NSLayoutAttributeCenterY multiplier:1 constant:0]
                                            ]];
     }
 

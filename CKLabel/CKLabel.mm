@@ -91,8 +91,14 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (CGSize)sizeThatFits:(CGSize)size {
     [super sizeThatFits:size];
 
+    CKTextKitCommonAttributes commonAttrs;
+    commonAttrs.lineBreakMode = _lineBreakMode;
+    commonAttrs.maximumNumberOfLines = _numberOfLines;
+    commonAttrs.truncationAttributedString = self.truncationAttributedText;
+    commonAttrs.attributedString = self.attributedText;
+
     __block CGRect usedRect = CGRectZero;
-    CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:*_commonAttrs constrainedSize:size];
+    CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:commonAttrs constrainedSize:size];
     [renderer.context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
         usedRect = [layoutManager usedRectForTextContainer:textContainer];
     }];

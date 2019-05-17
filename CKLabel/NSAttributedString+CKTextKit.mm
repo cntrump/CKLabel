@@ -16,7 +16,11 @@
 - (CGSize)ck_boundingSizeWithSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode maximumNumberOfLines:(NSUInteger)maximumNumberOfLines {
     __block CGSize boundingSize;
     
-    CKTextKitContext *context = [[CKTextKitContext alloc] initWithAttributedString:self lineBreakMode:lineBreakMode maximumNumberOfLines:maximumNumberOfLines constrainedSize:size layoutManagerFactory:NULL];
+    CKTextKitContext *context = [[CKTextKitContext alloc] initWithAttributedString:self
+                                                                     lineBreakMode:lineBreakMode
+                                                              maximumNumberOfLines:maximumNumberOfLines
+                                                                   constrainedSize:size
+                                                              layoutManagerFactory:NULL];
     [context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
         boundingSize = CGRectIntegral([layoutManager usedRectForTextContainer:textContainer]).size;
     }];

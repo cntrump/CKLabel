@@ -135,13 +135,18 @@
 }
 
 - (void)updateContent {
+    NSMutableParagraphStyle *style = NSParagraphStyle.defaultParagraphStyle.mutableCopy;
+    style.lineHeightMultiple = 1.4;
+    style.lineSpacing = 5;
+
     NSMutableString *text = [NSString randomStringWithLength:1024];
     [text insertString:@"\U0000ef70" atIndex:30];
     [text insertString:@"\U0000ef71" atIndex:180];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text
                                                                                    attributes:@{
                                                                                                 NSFontAttributeName: [UIFont fontOfSize:15],
-                                                                                                NSForegroundColorAttributeName: RGB(0x515151)
+                                                                                                NSForegroundColorAttributeName: RGB(0x515151),
+                                                                                                NSParagraphStyleAttributeName: style
                                                                                                 }];
     [attrString addAttributes:@{
                                 NSFontAttributeName: [UIFont boldFontOfSize:15],
@@ -207,7 +212,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 220;
+    return 320;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

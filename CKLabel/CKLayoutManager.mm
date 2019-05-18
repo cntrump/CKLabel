@@ -14,12 +14,12 @@
 
 - (instancetype)init {
     if (self = [super init]) {
-
+        self.delegate = self;
     }
 
     return self;
 }
-
+#if DEBUG
 - (void)drawBackgroundForGlyphRange:(NSRange)glyphsToShow atPoint:(CGPoint)origin {
     [super drawBackgroundForGlyphRange:glyphsToShow atPoint:origin];
 
@@ -47,13 +47,52 @@
         CGContextRestoreGState(graphicsContext);
     }
 }
+#endif
 
+#pragma mark - NSLayoutManagerDelegate
+
+- (BOOL)layoutManager:(NSLayoutManager *)layoutManager shouldSetLineFragmentRect:(inout CGRect *)lineFragmentRect
+ lineFragmentUsedRect:(inout CGRect *)lineFragmentUsedRect baselineOffset:(inout CGFloat *)baselineOffset
+      inTextContainer:(NSTextContainer *)textContainer forGlyphRange:(NSRange)glyphRange {
+    NSInteger characterIndex = [layoutManager characterIndexForGlyphAtIndex:glyphRange.location];
+    NSParagraphStyle *paragraphStyle = [layoutManager.textStorage attribute:NSParagraphStyleAttributeName atIndex:characterIndex effectiveRange:NULL];
+    CGFloat lineSpacing = paragraphStyle.lineSpacing;
+    CGFloat lineHeightMultiple = 1;
+    if (paragraphStyle.lineHeightMultiple != 0) {
+        lineHeightMultiple = paragraphStyle.lineHeightMultiple;
+    }
+
+    CGFloat baseline = *baselineOffset;
+    CGFloat height = (*lineFragmentRect).size.height;
+    CGFloat usedHeight = (*lineFragmentUsedRect).size.height;
+
+    BOOL isFirstLine = NO;
+    if (glyphRange.location == 0) {
+        isFirstLine = YES;
+    }
+
+    CGFloat glyphHeight = (usedHeight - lineSpacing) / lineHeightMultiple;
+    CGFloat glyphBaseline = baseline - (usedHeight - glyphHeight) + lineSpacing;
+
+    if (isFirstLine) {
+        *baselineOffset = glyphBaseline;
+        (*lineFragmentRect).size.height = height - (baseline - glyphBaseline);
+        (*lineFragmentUsedRect).size.height = usedHeight - (baseline - glyphBaseline);
+    } else {
+        *baselineOffset = baseline;
+        (*lineFragmentRect).size.height = height;
+        (*lineFragmentUsedRect).size.height = usedHeight;
+    }
+
+    return YES;
+}
 
 @end
 
 NSLayoutManager *CKLayoutManagerFactory(void) {
     CKLayoutManager *layoutManager = [[CKLayoutManager alloc] init];
-    //layoutManager.debugGlyph = YES;
-
+#if DEBUG
+    layoutManager.debugGlyph = YES;
+#endif
     return layoutManager;
 }

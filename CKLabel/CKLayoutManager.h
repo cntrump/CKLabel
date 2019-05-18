@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CKLayoutManager : NSLayoutManager
-
+@interface CKLayoutManager : NSLayoutManager <NSLayoutManagerDelegate>
+#if DEBUG
 @property(nonatomic, assign) BOOL debugGlyph;
-
+#endif
 @end
 
 NSLayoutManager *CKLayoutManagerFactory(void);

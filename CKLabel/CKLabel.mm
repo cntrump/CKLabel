@@ -121,7 +121,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
         _commonAttrs.attributedString = self.attributedText;
         _commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
 
-        _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs constrainedSize:self.bounds.size];
+        _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs
+                                                              constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
         _needUpdate = NO;
     }
 

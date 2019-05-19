@@ -361,9 +361,6 @@ static const CGFloat CKTextKitRendererTextCapHeightPadding = 1.3;
       return;
     }
 
-    // Force glyph generation and layout.
-    [layoutManager ensureLayoutForTextContainer:textContainer];
-
     NSRange glyphRange = [layoutManager glyphRangeForCharacterRange:textRange actualCharacterRange:NULL];
     textRect = [layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:textContainer];
   }];

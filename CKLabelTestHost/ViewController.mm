@@ -116,7 +116,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _textLabel = [[CKLabel alloc] initWithFrame:CGRectZero];
-        _textLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+        _textLabel.lineBreakMode = NSLineBreakByWordWrapping;
         _textLabel.numberOfLines  = 8;
         _textLabel.didTapText = ^(NSRange range, NSDictionary * _Nonnull attrs) {
             NSString *link = (NSString *)attrs.ck_entityAttribute;

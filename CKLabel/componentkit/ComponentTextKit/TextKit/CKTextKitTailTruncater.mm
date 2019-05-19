@@ -79,7 +79,6 @@
 
   [truncationContext performBlockWithLockedTextKitComponents:^(NSLayoutManager *truncationLayoutManager, NSTextStorage *truncationTextStorage, NSTextContainer *truncationTextContainer) {
     // Size the truncation message
-    [truncationLayoutManager ensureLayoutForTextContainer:truncationTextContainer];
     NSRange truncationGlyphRange = [truncationLayoutManager glyphRangeForTextContainer:truncationTextContainer];
     truncationUsedRect = [truncationLayoutManager boundingRectForGlyphRange:truncationGlyphRange
                                                             inTextContainer:truncationTextContainer];
@@ -161,15 +160,12 @@
   [_context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
     NSUInteger originalStringLength = textStorage.length;
 
-    [layoutManager ensureLayoutForTextContainer:textContainer];
-
-    NSRange visibleGlyphRange = [layoutManager glyphRangeForBoundingRect:{ .size = textContainer.size }
-                                                         inTextContainer:textContainer];
+    NSRange visibleGlyphRange = [layoutManager glyphRangeForTextContainer:textContainer];
     NSRange visibleCharacterRange = [layoutManager characterRangeForGlyphRange:visibleGlyphRange
                                                               actualGlyphRange:NULL];
 
     // Check if text is truncated, and if so apply our truncation string
-      if (visibleCharacterRange.length < originalStringLength && self->_truncationAttributedString.length > 0) {
+    if (visibleCharacterRange.length < originalStringLength && self->_truncationAttributedString.length > 0) {
       NSInteger firstCharacterIndexToReplace = [self _calculateCharacterIndexBeforeTruncationMessage:layoutManager
                                                                                          textStorage:textStorage
                                                                                        textContainer:textContainer];
@@ -187,7 +183,7 @@
                        withAttributedString:self->_truncationAttributedString];
     }
 
-      self->_visibleRanges = { visibleCharacterRange };
+    self->_visibleRanges = { visibleCharacterRange };
   }];
 }
 

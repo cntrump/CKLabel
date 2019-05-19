@@ -87,8 +87,13 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (CGSize)sizeThatFits:(CGSize)size {
     [super sizeThatFits:size];
 
+    NSLineBreakMode lineBreakMode = _lineBreakMode;
+    if (_lineBreakMode == NSLineBreakByWordWrapping || _lineBreakMode == NSLineBreakByCharWrapping) {
+        lineBreakMode = NSLineBreakByTruncatingTail;
+    }
+
     CKTextKitCommonAttributes commonAttrs;
-    commonAttrs.lineBreakMode = _lineBreakMode;
+    commonAttrs.lineBreakMode = lineBreakMode;
     commonAttrs.maximumNumberOfLines = _numberOfLines;
     commonAttrs.truncationAttributedString = self.truncationAttributedText;
     commonAttrs.attributedString = self.attributedText;
@@ -382,6 +387,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
+    if (!CGRectContainsPoint(self.bounds, point)) {
+        return NO;
+    }
+
     NSTextCheckingResult *trackingTextCheckingResult = [self.textLayer.renderer textCheckingResultAtPoint:point];
     
     return !!trackingTextCheckingResult;

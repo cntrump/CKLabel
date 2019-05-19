@@ -16,7 +16,11 @@
 
 - (CGSize)ck_boundingSizeWithSize:(CGSize)size lineBreakMode:(NSLineBreakMode)lineBreakMode maximumNumberOfLines:(NSUInteger)maximumNumberOfLines {
     __block CGSize boundingSize;
-    
+
+    if (lineBreakMode == NSLineBreakByWordWrapping || lineBreakMode == NSLineBreakByCharWrapping) {
+        lineBreakMode = NSLineBreakByTruncatingTail;
+    }
+
     CKTextKitContext *context = [[CKTextKitContext alloc] initWithAttributedString:self
                                                                      lineBreakMode:lineBreakMode
                                                               maximumNumberOfLines:maximumNumberOfLines

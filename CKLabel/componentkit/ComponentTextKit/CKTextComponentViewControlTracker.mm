@@ -41,6 +41,10 @@
                                 withEvent:(UIEvent *)event
 {
   CGPoint point = [touch locationInView:view];
+  if (!CGRectContainsPoint(view.bounds, point)) {
+    return NO;
+  }
+
   NSTextCheckingResult *trackingTextCheckingResult = [view.renderer textCheckingResultAtPoint:point];
   if (trackingTextCheckingResult != nil) {
     view.textLayer.highlighter.highlightedRange = trackingTextCheckingResult.range;

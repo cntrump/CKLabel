@@ -66,6 +66,10 @@ static CK::TextKit::Renderer::Cache *rasterContentsCache()
           && CGSizeEqualToSize(renderer.constrainedSize, renderer.constrainedSize)) {
         // If the renderers are identical there's no point in re-rendering
         _renderer = renderer;
+        if (isfinite(renderer.constrainedSize.height) || isfinite(renderer.constrainedSize.width)) {
+          [self setNeedsDisplay];
+        }
+
         return;
       } else {
         // If the renderers are truly not equal we need to nil out the contents so we don't display old text

@@ -156,17 +156,14 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (void)setBounds:(CGRect)bounds {
     [super setBounds:bounds];
-    
-    CGFloat w = CGRectGetWidth(bounds);
-    if (_preferredMaxLayoutWidth != w) {
-        _preferredMaxLayoutWidth = w;
-        
-        __weak typeof(self) wself = self;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [wself invalidateIntrinsicContentSize];
-        });
-    }
+
+    _preferredMaxLayoutWidth = CGRectGetWidth(bounds);
+    _needUpdate = YES;
+    __weak typeof(self) wself = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [wself invalidateIntrinsicContentSize];
+        [wself setNeedsLayout];
+    });
 }
 
 - (void)setPreferredMaxLayoutWidth:(CGFloat)preferredMaxLayoutWidth {

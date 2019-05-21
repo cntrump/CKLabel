@@ -83,11 +83,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    if (!CGRectEqualToRect(_innerBounds, self.bounds) || _needUpdate) {
-        _innerBounds = self.bounds;
-        _needUpdate = NO;
-        self.renderer = self.innerRenderer;
-    }
+    self.renderer = self.innerRenderer;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -125,14 +121,19 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 #pragma mark - getter
 
 - (CKTextKitRenderer *)innerRenderer {
-    _commonAttrs.lineBreakMode = _lineBreakMode;
-    _commonAttrs.maximumNumberOfLines = _numberOfLines;
-    _commonAttrs.truncationAttributedString = self.truncationAttributedText;
-    _commonAttrs.attributedString = self.attributedText;
-    _commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
+    if (!_innerRenderer || !CGRectEqualToRect(_innerBounds, self.bounds) || _needUpdate) {
+        _innerBounds = self.bounds;
+        _needUpdate = NO;
 
-    _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs
-                                                          constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
+        _commonAttrs.lineBreakMode = _lineBreakMode;
+        _commonAttrs.maximumNumberOfLines = _numberOfLines;
+        _commonAttrs.truncationAttributedString = self.truncationAttributedText;
+        _commonAttrs.attributedString = self.attributedText;
+        _commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
+
+        _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs
+                                                              constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
+    }
 
     return _innerRenderer;
 }

@@ -35,6 +35,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     CKTextKitCommonAttributes _commonAttrs;
     NSMutableParagraphStyle *_paragraphStyle;
     BOOL _needUpdate;
+    CGRect _innerBounds;
 }
 
 @property(nonatomic, readonly) CKTextComponentLayer *textLayer;
@@ -55,6 +56,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        _innerBounds = self.bounds;
         _needUpdate = YES;
         _font = [UIFont systemFontOfSize:17];
         _textColor = UIColor.blackColor;
@@ -81,7 +83,11 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)layoutSubviews {
     [super layoutSubviews];
 
-    self.renderer = self.innerRenderer;
+    if (!CGRectEqualToRect(_innerBounds, self.bounds) || _needUpdate) {
+        _innerBounds = self.bounds;
+        _needUpdate = NO;
+        self.renderer = self.innerRenderer;
+    }
 }
 
 - (CGSize)sizeThatFits:(CGSize)size {
@@ -119,17 +125,14 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 #pragma mark - getter
 
 - (CKTextKitRenderer *)innerRenderer {
-    if (_needUpdate) {
-        _commonAttrs.lineBreakMode = _lineBreakMode;
-        _commonAttrs.maximumNumberOfLines = _numberOfLines;
-        _commonAttrs.truncationAttributedString = self.truncationAttributedText;
-        _commonAttrs.attributedString = self.attributedText;
-        _commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
+    _commonAttrs.lineBreakMode = _lineBreakMode;
+    _commonAttrs.maximumNumberOfLines = _numberOfLines;
+    _commonAttrs.truncationAttributedString = self.truncationAttributedText;
+    _commonAttrs.attributedString = self.attributedText;
+    _commonAttrs.layoutManagerFactory = &CKLayoutManagerFactory;
 
-        _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs
-                                                              constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
-        _needUpdate = NO;
-    }
+    _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs
+                                                          constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
 
     return _innerRenderer;
 }

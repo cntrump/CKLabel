@@ -28,6 +28,7 @@ static CK::TextKit::Renderer::Cache *rasterContentsCache()
 @implementation CKTextComponentLayer
 {
   CKTextComponentLayerHighlighter *_highlighter;
+  CGRect _innerBounds;
 }
 
 + (id)defaultValueForKey:(NSString *)key
@@ -63,13 +64,9 @@ static CK::TextKit::Renderer::Cache *rasterContentsCache()
   if (renderer != _renderer) {
     if (renderer && _renderer) {
       if (renderer.attributes == _renderer.attributes
-          && CGSizeEqualToSize(renderer.constrainedSize, renderer.constrainedSize)) {
+          && CGSizeEqualToSize(self.bounds.size, _innerBounds.size)) {
         // If the renderers are identical there's no point in re-rendering
         _renderer = renderer;
-        if (isfinite(renderer.constrainedSize.height) || isfinite(renderer.constrainedSize.width)) {
-          [self setNeedsDisplay];
-        }
-
         return;
       } else {
         // If the renderers are truly not equal we need to nil out the contents so we don't display old text
@@ -77,6 +74,8 @@ static CK::TextKit::Renderer::Cache *rasterContentsCache()
         self.contents = nil;
       }
     }
+
+    _innerBounds = self.bounds;
     _renderer = renderer;
     [self setNeedsDisplay];
   }
@@ -89,7 +88,7 @@ static CK::TextKit::Renderer::Cache *rasterContentsCache()
 
 - (id)willDisplayAsynchronouslyWithDrawParameters:(id<NSObject>)drawParameters
 {
-  return rasterContentsCache()->objectForKey({_renderer.attributes, _renderer.constrainedSize});
+  return rasterContentsCache()->objectForKey({_renderer.attributes, self.bounds.size});
 }
 
 - (void)didDisplayAsynchronously:(id)newContents withDrawParameters:(id<NSObject>)drawParameters
@@ -97,7 +96,7 @@ static CK::TextKit::Renderer::Cache *rasterContentsCache()
   if (newContents) {
     CGImageRef imageRef = (__bridge CGImageRef)newContents;
     NSUInteger bytes = CGImageGetBytesPerRow(imageRef) * CGImageGetHeight(imageRef);
-    rasterContentsCache()->cacheObject({_renderer.attributes, _renderer.constrainedSize}, newContents, bytes);
+    rasterContentsCache()->cacheObject({_renderer.attributes, self.bounds.size}, newContents, bytes);
   }
 }
 

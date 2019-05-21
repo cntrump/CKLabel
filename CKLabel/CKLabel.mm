@@ -119,7 +119,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 #pragma mark - getter
 
 - (CKTextKitRenderer *)innerRenderer {
-    if (!CGSizeEqualToSize(_innerRenderer.constrainedSize, self.bounds.size) || _needUpdate) {
+    if (_needUpdate) {
         _commonAttrs.lineBreakMode = _lineBreakMode;
         _commonAttrs.maximumNumberOfLines = _numberOfLines;
         _commonAttrs.truncationAttributedString = self.truncationAttributedText;
@@ -157,24 +157,16 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)setBounds:(CGRect)bounds {
     [super setBounds:bounds];
 
-    _preferredMaxLayoutWidth = CGRectGetWidth(bounds);
-    _needUpdate = YES;
     __weak typeof(self) wself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        [wself invalidateIntrinsicContentSize];
-        [wself setNeedsLayout];
+        wself.preferredMaxLayoutWidth = CGRectGetWidth(bounds);
     });
 }
 
 - (void)setPreferredMaxLayoutWidth:(CGFloat)preferredMaxLayoutWidth {
-    if (_preferredMaxLayoutWidth == preferredMaxLayoutWidth) {
-        return;
-    }
-
     _preferredMaxLayoutWidth = preferredMaxLayoutWidth;
-    
-    [self invalidateIntrinsicContentSize];
-    [self setNeedsLayout];
+
+    [self updateContent];
 }
 
 - (void)setHighlightColor:(UIColor *)highlightColor {

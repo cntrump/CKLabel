@@ -122,9 +122,6 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (CKTextKitRenderer *)innerRenderer {
     if (!_innerRenderer || !CGRectEqualToRect(_innerBounds, self.bounds) || _needUpdate) {
-        _innerBounds = self.bounds;
-        _needUpdate = NO;
-
         _commonAttrs.lineBreakMode = _lineBreakMode;
         _commonAttrs.maximumNumberOfLines = _numberOfLines;
         _commonAttrs.truncationAttributedString = self.truncationAttributedText;
@@ -133,6 +130,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
         _innerRenderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:_commonAttrs
                                                               constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
+        _innerBounds = self.bounds;
+        _needUpdate = NO;
     }
 
     return _innerRenderer;

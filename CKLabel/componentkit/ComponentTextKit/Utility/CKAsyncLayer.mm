@@ -24,6 +24,7 @@
 @implementation CKAsyncLayer
 {
   BOOL _needsAsyncDisplayOnly;
+  CGRect _innerBounds;
 }
 
 #pragma mark - Class Methods
@@ -58,6 +59,14 @@
 }
 
 @dynamic displayMode;
+
+- (void)setContents:(id)contents {
+    if (super.contents == contents) {
+        return;
+    }
+
+    [super setContents:contents];
+}
 
 - (void)setNeedsDisplay
 {
@@ -158,15 +167,17 @@
     return;
   }
 
-  if (!_needsAsyncDisplayOnly) {
+  CGRect bounds = self.bounds;
+  if (!CGSizeEqualToSize(_innerBounds.size, bounds.size)) {
     // Reset needsDisplay to NO and remove any old content; otherwise it might appear stretched until rendering completes
     self.contents = nil;
+    _innerBounds = bounds;
   }
   // Clear the _needsAsyncDisplayOnly flag for this display pass, since we've started async display.
   _needsAsyncDisplayOnly = NO;
 
-  CGRect bounds = self.bounds;
   if (CGRectIsEmpty(bounds)) {
+    self.contents = nil;
     return;
   }
 
@@ -176,6 +187,8 @@
     self.contents = shortCircuitContents;
     return;
   }
+
+  self.contents = nil;
 
   int32_t displaySentinelValue = atomic_add_return(1, &_displaySentinel);
   CALayer *containerLayer = parentTransactionContainer ?: self;

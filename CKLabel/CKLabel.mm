@@ -46,7 +46,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 @implementation CKLabel
 
-- (NSString *)debugDescription {
+- (NSString *)description {
     return [NSString stringWithFormat:@"<%@: %p; baseClass: %@; frame:(%lf %lf, %lf %lf); layer= <%@: %p>; '%@'>",
             NSStringFromClass(self.class), self, NSStringFromClass(self.superclass),
             CGRectGetMinX(self.frame), CGRectGetMinY(self.frame), CGRectGetWidth(self.frame), CGRectGetHeight(self.frame),
@@ -88,6 +88,10 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
 - (CGSize)sizeThatFits:(CGSize)size {
     [super sizeThatFits:size];
+
+    if (self.attributedText.length == 0) {
+        return CGSizeZero;
+    }
 
     NSLineBreakMode lineBreakMode = _lineBreakMode;
     if (_lineBreakMode == NSLineBreakByWordWrapping || _lineBreakMode == NSLineBreakByCharWrapping) {

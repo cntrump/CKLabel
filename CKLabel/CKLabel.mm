@@ -118,7 +118,11 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (CGSize)intrinsicContentSize {
     [super intrinsicContentSize];
 
-    CGFloat w = _preferredMaxLayoutWidth > 0 ? _preferredMaxLayoutWidth : INFINITY;
+    if (_preferredMaxLayoutWidth > 0 && _numberOfLines > 1) {
+        return [self sizeThatFits:CGSizeMake(_preferredMaxLayoutWidth, INFINITY)];
+    }
+
+    CGFloat w = CGRectGetWidth(self.bounds) ? : INFINITY;
     
     return [self sizeThatFits:CGSizeMake(w, INFINITY)];
 }
@@ -170,7 +174,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
     __weak typeof(self) wself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        wself.preferredMaxLayoutWidth = CGRectGetWidth(bounds);
+        [wself updateContent];
     });
 }
 
@@ -209,7 +213,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (NSString *)text {
-    return _innerAttributedText.string;
+    return self.attributedText.string;
 }
 
 - (void)setText:(NSString *)text {

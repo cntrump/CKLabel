@@ -36,6 +36,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     NSMutableParagraphStyle *_paragraphStyle;
     BOOL _needUpdate;
     CGRect _innerBounds;
+    NSMutableArray<UIAccessibilityElement *> *_accessibleElements;
 }
 
 @property(nonatomic, readonly) CKTextComponentLayer *textLayer;
@@ -117,7 +118,11 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (CGSize)intrinsicContentSize {
     [super intrinsicContentSize];
 
-    CGFloat w = _preferredMaxLayoutWidth > 0 ? _preferredMaxLayoutWidth : INFINITY;
+    if (_preferredMaxLayoutWidth > 0 && _numberOfLines != 1) {
+        return [self sizeThatFits:CGSizeMake(_preferredMaxLayoutWidth, INFINITY)];
+    }
+
+    CGFloat w = CGRectGetWidth(self.bounds) ? : INFINITY;
     
     return [self sizeThatFits:CGSizeMake(w, INFINITY)];
 }
@@ -136,6 +141,9 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
                                                               constrainedSize:CGSizeMake(CGRectGetWidth(self.bounds), INFINITY)];
         _innerBounds = self.bounds;
         _needUpdate = NO;
+
+        UIAccessibilityElement *element = [self.accessibleElements objectAtIndex:0];
+        element.accessibilityValue = self.attributedText.string;
     }
 
     return _innerRenderer;
@@ -166,7 +174,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 
     __weak typeof(self) wself = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        wself.preferredMaxLayoutWidth = CGRectGetWidth(bounds);
+        [wself updateContent];
     });
 }
 
@@ -205,7 +213,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 }
 
 - (NSString *)text {
-    return _innerAttributedText.string;
+    return self.attributedText.string;
 }
 
 - (void)setText:(NSString *)text {
@@ -412,6 +420,38 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     UIGraphicsPushContext(context);
     [self.renderer drawInContext:context bounds:self.bounds];
     UIGraphicsPopContext();
+}
+
+#pragma mark - UIAccessibility
+
+- (NSArray *)accessibleElements {
+    if (!_accessibleElements) {
+        _accessibleElements = [[NSMutableArray alloc] init];
+
+        UIAccessibilityElement *element = [[UIAccessibilityElement alloc] initWithAccessibilityContainer:self];
+        element.accessibilityTraits = UIAccessibilityTraitStaticText;
+        [_accessibleElements addObject:element];
+    }
+
+    _accessibleElements.firstObject.accessibilityFrame = [self.superview convertRect:self.frame toView:nil];
+
+    return _accessibleElements;
+}
+
+- (BOOL)isAccessibilityElement {
+    return NO;
+}
+
+- (NSInteger)accessibilityElementCount {
+    return [[self accessibleElements] count];
+}
+
+- (id)accessibilityElementAtIndex:(NSInteger)index {
+    return [[self accessibleElements] objectAtIndex:index];
+}
+
+- (NSInteger)indexOfAccessibilityElement:(id)element {
+    return [[self accessibleElements] indexOfObject:element];
 }
 
 @end

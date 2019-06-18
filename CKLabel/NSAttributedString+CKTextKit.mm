@@ -27,6 +27,7 @@
                                                                    constrainedSize:size
                                                               layoutManagerFactory:&CKLayoutManagerFactory];
     [context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
+        (void)[layoutManager glyphRangeForTextContainer:textContainer];
         boundingSize = CGRectIntegral([layoutManager usedRectForTextContainer:textContainer]).size;
     }];
     

@@ -74,6 +74,7 @@ static NSCharacterSet *_defaultAvoidTruncationCharacterSet()
   CGRect constrainedRect = {CGPointZero, _constrainedSize};
   __block CGRect boundingRect;
   [_context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
+    (void)[layoutManager glyphRangeForTextContainer:textContainer];
     boundingRect = [layoutManager usedRectForTextContainer:textContainer];
   }];
 

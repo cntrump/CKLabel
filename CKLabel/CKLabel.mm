@@ -109,6 +109,7 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     __block CGRect usedRect = CGRectZero;
     CKTextKitRenderer *renderer = [[CKTextKitRenderer alloc] initWithTextKitAttributes:commonAttrs constrainedSize:size];
     [renderer.context performBlockWithLockedTextKitComponents:^(NSLayoutManager *layoutManager, NSTextStorage *textStorage, NSTextContainer *textContainer) {
+        (void)[layoutManager glyphRangeForTextContainer:textContainer];
         usedRect = [layoutManager usedRectForTextContainer:textContainer];
     }];
 

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UIKitSPI.h"
 #import <CommonCrypto/CommonRandom.h>
 @import CKLabel;
 
@@ -28,39 +29,15 @@
 @implementation UIFont (icofont)
 
 + (UIFont *)fontOfSize:(CGFloat)fontSize {
-    UIFont *systemFont = [UIFont systemFontOfSize:fontSize];
-
-    NSMutableDictionary *attrs = NSMutableDictionary.dictionary;
-    attrs[UIFontDescriptorNameAttribute] = @"icofont";
-    attrs[UIFontDescriptorCascadeListAttribute] = @[[UIFontDescriptor fontDescriptorWithName:systemFont.fontName size:fontSize]];
-
-    UIFontDescriptor *fd = [UIFontDescriptor fontDescriptorWithFontAttributes:attrs];
-
-    return [UIFont fontWithDescriptor:fd size:fontSize];
+    return [UIFont fontWithMarkupDescription:[NSString stringWithFormat:@"font-family: %@; font-size: %ldpx;", @"icofont", (NSInteger)fontSize]];
 }
 
 + (UIFont *)boldFontOfSize:(CGFloat)fontSize {
-    UIFont *systemFont = [UIFont boldSystemFontOfSize:fontSize];
-
-    NSMutableDictionary *attrs = NSMutableDictionary.dictionary;
-    attrs[UIFontDescriptorNameAttribute] = @"icofont";
-    attrs[UIFontDescriptorCascadeListAttribute] = @[[UIFontDescriptor fontDescriptorWithName:systemFont.fontName size:fontSize]];
-
-    UIFontDescriptor *fd = [UIFontDescriptor fontDescriptorWithFontAttributes:attrs];
-
-    return [UIFont fontWithDescriptor:fd size:fontSize];
+    return [UIFont fontWithMarkupDescription:[NSString stringWithFormat:@"font-family: %@; font-size: %ldpx; font-weight: bold;", @"icofont", (NSInteger)fontSize]];
 }
 
 + (UIFont *)italicFontOfSize:(CGFloat)fontSize {
-    UIFont *systemFont = [UIFont italicSystemFontOfSize:fontSize];
-
-    NSMutableDictionary *attrs = NSMutableDictionary.dictionary;
-    attrs[UIFontDescriptorNameAttribute] = @"icofont";
-    attrs[UIFontDescriptorCascadeListAttribute] = @[[UIFontDescriptor fontDescriptorWithName:systemFont.fontName size:fontSize]];
-
-    UIFontDescriptor *fd = [UIFontDescriptor fontDescriptorWithFontAttributes:attrs];
-
-    return [UIFont fontWithDescriptor:fd size:fontSize];
+    return [UIFont fontWithMarkupDescription:[NSString stringWithFormat:@"font-family: %@; font-size: %ldpx; font-style: italic;", @"icofont", (NSInteger)fontSize]];
 }
 
 @end

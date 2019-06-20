@@ -90,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		730B883D22BBB6030046ABF3 /* UIKitSPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIKitSPI.h; sourceTree = "<group>"; };
 		732516AD222E752200978DC8 /* NSAttributedString+CKTextKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+CKTextKit.h"; sourceTree = "<group>"; };
 		732516AE222E752200978DC8 /* NSAttributedString+CKTextKit.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = "NSAttributedString+CKTextKit.mm"; sourceTree = "<group>"; };
 		736458502226BAC30016656B /* CKLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CKLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +236,7 @@
 				736458CA2226C1360016656B /* AppDelegate.mm */,
 				736458CC2226C1360016656B /* ViewController.h */,
 				736458CD2226C1360016656B /* ViewController.mm */,
+				730B883D22BBB6030046ABF3 /* UIKitSPI.h */,
 				736458CF2226C1360016656B /* Main.storyboard */,
 				736458D22226C1370016656B /* Assets.xcassets */,
 				736458D42226C1370016656B /* LaunchScreen.storyboard */,
@@ -728,6 +730,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y28WQ9G7N2;
 				INFOPLIST_FILE = CKLabelTestHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -754,6 +757,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y28WQ9G7N2;
 				INFOPLIST_FILE = CKLabelTestHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (

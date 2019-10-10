@@ -166,6 +166,7 @@
 		739CB7C22234FDA6003C7DDB /* CKEqualityHashHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKEqualityHashHelpers.h; sourceTree = "<group>"; };
 		739CB7C32234FDA6003C7DDB /* CKAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKAssert.h; sourceTree = "<group>"; };
 		739CB7C42234FDA6003C7DDB /* CKInternalHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKInternalHelpers.h; sourceTree = "<group>"; };
+		73C4E478234F191B0078DF67 /* CKLabelTestHost.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = CKLabelTestHost.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +232,7 @@
 		736458C82226C1360016656B /* CKLabelTestHost */ = {
 			isa = PBXGroup;
 			children = (
+				73C4E478234F191B0078DF67 /* CKLabelTestHost.entitlements */,
 				7380495922782C6100A4D678 /* fonts.bundle */,
 				736458C92226C1360016656B /* AppDelegate.h */,
 				736458CA2226C1360016656B /* AppDelegate.mm */,
@@ -731,7 +733,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CKLabelTestHost/CKLabelTestHost.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = Y28WQ9G7N2;
 				INFOPLIST_FILE = CKLabelTestHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -750,6 +754,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vvveiii.CKLabelTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -758,7 +763,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CKLabelTestHost/CKLabelTestHost.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = Y28WQ9G7N2;
 				INFOPLIST_FILE = CKLabelTestHost/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -777,6 +784,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.vvveiii.CKLabelTestHost;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

@@ -173,10 +173,8 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
 - (void)setBounds:(CGRect)bounds {
     [super setBounds:bounds];
 
-    __weak typeof(self) wself = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [wself updateContent];
-    });
+    CGFloat width = CGRectGetWidth(bounds);
+    [self updateConstraintsIfNeeded:width];
 }
 
 - (void)setPreferredMaxLayoutWidth:(CGFloat)preferredMaxLayoutWidth {
@@ -383,6 +381,17 @@ struct CKTextKitCommonAttributes : CKTextKitAttributes {
     _paragraphStyle.paragraphSpacingBefore = _paragraphSpacingBefore;
 
     return _paragraphStyle;
+}
+
+- (void)updateConstraintsIfNeeded:(CGFloat)width {
+    CGFloat maxWidth = _preferredMaxLayoutWidth;
+    if (maxWidth != width) {
+        _preferredMaxLayoutWidth = width;
+        [self invalidateIntrinsicContentSize];
+#if !TARGET_OS_OSX
+        [self.superview layoutIfNeeded];
+#endif
+    }
 }
 
 - (void)updateContent {
